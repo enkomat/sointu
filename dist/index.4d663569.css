@@ -1,0 +1,33 @@
+body {
+    font-family: Lato, sans-serif;
+    color: black;
+    background: #fff;
+}
+
+input[type=range] {
+    width: 40px;
+}
+
+input[type=text] {
+    width: 25px;
+}
+
+#border-box {
+    border: 1px solid #ccc !important;
+    border-radius: 10px;
+    display:inline;
+    float:left;
+    padding: 5px;
+    margin: 5px;
+}
+
+#full-width {
+    border: 1px solid #ccc !important;
+    border-radius: 10px;
+    display:inline;
+    float:left;
+    padding: 20px;
+    margin: 5px;
+    width: 70%;
+}
+/*# sourceMappingURL=index.4d663569.css.map */

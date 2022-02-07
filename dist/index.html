@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Chord Dictionary</title>
+    <link rel="stylesheet" href="/index.4d663569.css">
+</head>
+<body>
+    <div class="controls">
+        Key:
+        <input type="range" min="-24" max="24" value="0" id="start-note">
+        Minor-Major:<input type="range" min="-1" max="0" value="0" id="first-type">
+        Root pitch:<input type="range" min="-4" max="0" value="0" id="root-pitch">
+        <br><br>
+        <div id="full-width">
+            <b>First chord</b>
+            <br>
+            <div id="border-box">Root note:<input type="range" min="0" max="6" value="0" id="first-chord"></div>
+            <br><br><br>
+            <div>
+                <div id="border-box">
+                    <b>1</b>
+                    <br>
+                    <input type="range" min="-3" max="3" value="0" id="mult-1">
+                    <input type="text" value="0" id="offset-1">
+                </div>
+                <div id="border-box">
+                    2
+                    <br>
+                    <input type="range" min="-3" max="3" value="0" id="mult-2">
+                    <input type="text" value="0" id="offset-2">
+                </div>
+                </div>
+                <div id="border-box">
+                    3
+                    <br>
+                    <input type="range" min="-3" max="3" value="0" id="mult-3">
+                    <input type="text" value="0" id="offset-3">
+                </div>
+                <div id="border-box">
+                    4
+                    <br>
+                    <input type="range" min="-3" max="3" value="0" id="mult-4">
+                    <input type="text" value="0" id="offset-4">
+                </div>
+                <div id="border-box">
+                    5
+                    <br>
+                    <input type="range" min="-3" max="3" value="0" id="mult-5">
+                    <input type="text" value="0" id="offset-5">
+                </div>
+                <div id="border-box">
+                    6
+                    <br>
+                    <input type="range" min="-3" max="3" value="0" id="mult-6">
+                    <input type="text" value="0" id="offset-6">
+                </div>
+                <div id="border-box">
+                    7
+                    <br>
+                    <input type="range" min="-3" max="3" value="0" id="mult-7">
+                    <input type="text" value="0" id="offset-7">
+                </div>
+                <div id="border-box">
+                    8
+                    <br>
+                    <input type="range" min="-3" max="3" value="0" id="mult-8">
+                    <input type="text" value="0" id="offset-8">
+                </div>
+            </div>
+        </div>
+        <br><br><br><br>
+        <div id="full-width">
+            <b>Second chord</b>
+            <br>
+            <div id="border-box">Root note:<input type="range" min="0" max="6" value="0" id="second-chord"></div>
+            <div id="border-box"><input type="button" value="Flip chord" id="second-type"></div>
+            <br><br><br>
+            <div>
+                <div id="border-box">
+                    Q
+                    <input type="range" min="-3" max="3" value="0" id="mult-9">
+                    <input type="text" value="0" id="offset-9">
+                </div>
+                <div id="border-box">
+                    W
+                    <input type="range" min="-3" max="3" value="0" id="mult-10">
+                    <input type="text" value="0" id="offset-10">
+                </div>
+                </div>
+                <div id="border-box">
+                    E
+                    <input type="range" min="-3" max="3" value="0" id="mult-11">
+                    <input type="text" value="0" id="offset-11">
+                </div>
+                <div id="border-box">
+                    R
+                    <input type="range" min="-3" max="3" value="0" id="mult-12">
+                    <input type="text" value="0" id="offset-12">
+                </div>
+                <div id="border-box">
+                    T
+                    <input type="range" min="-3" max="3" value="0" id="mult-13">
+                    <input type="text" value="0" id="offset-13">
+                </div>
+                <div id="border-box">
+                    Y
+                    <input type="range" min="-3" max="3" value="0" id="mult-14">
+                    <input type="text" value="0" id="offset-14">
+                </div>
+                <div id="border-box">
+                    U
+                    <input type="range" min="-3" max="3" value="0" id="mult-15">
+                    <input type="text" value="0" id="offset-15">
+                </div>
+                <div id="border-box">
+                    I
+                    <input type="range" min="-3" max="3" value="0" id="mult-16">
+                    <input type="text" value="0" id="offset-16">
+                </div>
+            </div>
+        
+        <div id="full-width">
+            <b>Third chord</b>
+            <br>
+            <div id="border-box">Root note:<input type="range" min="0" max="6" value="0" id="third-chord"></div>
+            <div id="border-box"><input type="button" value="Flip chord" id="third-type"></div>
+            <br><br><br>
+            <div>
+                <div id="border-box">
+                    A
+                    <input type="range" min="-3" max="3" value="0" id="mult-17">
+                    <input type="text" value="0" id="offset-17">
+                </div>
+                <div id="border-box">
+                    S
+                    <input type="range" min="-3" max="3" value="0" id="mult-18">
+                    <input type="text" value="0" id="offset-18">
+                </div>
+                </div>
+                <div id="border-box">
+                    D
+                    <input type="range" min="-3" max="3" value="0" id="mult-19">
+                    <input type="text" value="0" id="offset-19">
+                </div>
+                <div id="border-box">
+                    F
+                    <input type="range" min="-3" max="3" value="0" id="mult-20">
+                    <input type="text" value="0" id="offset-20">
+                </div>
+                <div id="border-box">
+                    G
+                    <input type="range" min="-3" max="3" value="0" id="mult-21">
+                    <input type="text" value="0" id="offset-21">
+                </div>
+                <div id="border-box">
+                    H
+                    <input type="range" min="-3" max="3" value="0" id="mult-22">
+                    <input type="text" value="0" id="offset-22">
+                </div>
+                <div id="border-box">
+                    J
+                    <input type="range" min="-3" max="3" value="0" id="mult-23">
+                    <input type="text" value="0" id="offset-23">
+                </div>
+                <div id="border-box">
+                    K
+                    <input type="range" min="-3" max="3" value="0" id="mult-24">
+                    <input type="text" value="0" id="offset-24">
+                </div>
+            </div>
+        
+        <div id="full-width">
+            <b>Fourth chord</b>
+            <br>
+            <div id="border-box">Root note:<input type="range" min="0" max="6" value="0" id="fourth-chord"></div>
+            <div id="border-box"><input type="button" value="Flip chord" id="fourth-type"></div>
+            <br><br><br>
+            <div id="border-box">
+                Z
+                <input type="range" min="-3" max="3" value="0" id="mult-25">
+                <input type="text" value="0" id="offset-1">
+            </div>
+            <div id="border-box">
+                X
+                <input type="range" min="-3" max="3" value="0" id="mult-26">
+                <input type="text" value="0" id="offset-2">
+            </div>
+            <div id="border-box">
+                C
+                <input type="range" min="-3" max="3" value="0" id="mult-27">
+                <input type="text" value="0" id="offset-3">
+            </div>
+            <div id="border-box">
+                V
+                <input type="range" min="-3" max="3" value="0" id="mult-28">
+                <input type="text" value="0" id="offset-4">
+            </div>
+            <div id="border-box">
+                B
+                <input type="range" min="-3" max="3" value="0" id="mult-29">
+                <input type="text" value="0" id="offset-5">
+            </div>
+            <div id="border-box">
+                N
+                <input type="range" min="-3" max="3" value="0" id="mult-30">
+                <input type="text" value="0" id="offset-6">
+            </div>
+            <div id="border-box">
+                M
+                <input type="range" min="-3" max="3" value="0" id="mult-31">
+                <input type="text" value="0" id="offset-7">
+            </div>
+            <div id="border-box">
+                ;
+                <input type="range" min="-3" max="3" value="0" id="mult-32">
+                <input type="text" value="0" id="offset-8">
+            </div>
+        </div>
+    
+    <br>
+    <script src="/index.975ef6c8.js" defer=""></script>
+</body>
+</html>

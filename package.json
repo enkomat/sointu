@@ -1,0 +1,25 @@
+{
+  "name": "chord-player",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@tonaljs/chord": "^3.3.0",
+    "@tonaljs/chord-dictionary": "^3.3.0",
+    "@tonaljs/tonal": "^3.2.2",
+    "fs": "^0.0.1-security",
+    "howler": "^2.1.3",
+    "jsmidgen": "^0.1.5",
+    "jzz-midi-smf": "^1.6.7",
+    "midi-file": "^1.2.2",
+    "midi-writer-js": "^2.0.1"
+  },
+  "devDependencies": {
+    "parcel": "^2.1.1"
+  }
+}
