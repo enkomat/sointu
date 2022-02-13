@@ -291,8 +291,6 @@ const app = {
     setupEventListeners() {
         startNoteSelector.addEventListener('change', () => {
             key = parseInt(startNoteSelector.value);
-        });
-        firstChordSelector.addEventListener('change', () => { 
             zeroChordRoot = this.getCorrectMinorAndMajorRoot(parseInt(firstChordSelector.value));
             firstChordRoot = this.getCorrectMinorAndMajorRoot(this.getCorrectMinorAndMajorRootFromSemitone(firstChordRoot));
             secondChordRoot = this.getCorrectMinorAndMajorRoot(this.getCorrectMinorAndMajorRootFromSemitone(secondChordRoot));
@@ -438,56 +436,6 @@ const app = {
         })
         octaveMultiplier32Selector.addEventListener('change', () => { 
             octaveMultiplier32 = parseInt(octaveMultiplier32Selector.value); 
-        })
-
-        semitoneOffset9Selector.addEventListener('change', () => { 
-            semitoneOffset9 = parseInt(semitoneOffset9Selector.value); 
-        })
-        semitoneOffset10Selector.addEventListener('change', () => { 
-            semitoneOffset10 = parseInt(semitoneOffset10Selector.value); 
-        })
-        semitoneOffset11Selector.addEventListener('change', () => { 
-            semitoneOffset11 = parseInt(semitoneOffset11Selector.value); 
-        })
-        semitoneOffset12Selector.addEventListener('change', () => { 
-            semitoneOffset12 = parseInt(semitoneOffset12Selector.value); 
-        })
-        semitoneOffset13Selector.addEventListener('change', () => { 
-            semitoneOffset13 = parseInt(semitoneOffset13Selector.value); 
-        })
-        semitoneOffset14Selector.addEventListener('change', () => { 
-            semitoneOffset14 = parseInt(semitoneOffset14Selector.value); 
-        })
-        semitoneOffset15Selector.addEventListener('change', () => { 
-            semitoneOffset15 = parseInt(semitoneOffset15Selector.value); 
-        })
-        semitoneOffset16Selector.addEventListener('change', () => { 
-            semitoneOffset16 = parseInt(semitoneOffset16Selector.value); 
-        })
-
-        semitoneOffset17Selector.addEventListener('change', () => { 
-            semitoneOffset17 = parseInt(semitoneOffset17Selector.value); 
-        })
-        semitoneOffset18Selector.addEventListener('change', () => { 
-            semitoneOffset18 = parseInt(semitoneOffset18Selector.value); 
-        })
-        semitoneOffset19Selector.addEventListener('change', () => { 
-            semitoneOffset19 = parseInt(semitoneOffset19Selector.value); 
-        })
-        semitoneOffset20Selector.addEventListener('change', () => { 
-            semitoneOffset20 = parseInt(semitoneOffset20Selector.value); 
-        })
-        semitoneOffset21Selector.addEventListener('change', () => { 
-            semitoneOffset21 = parseInt(semitoneOffset21Selector.value); 
-        })
-        semitoneOffset22Selector.addEventListener('change', () => { 
-            semitoneOffset22 = parseInt(semitoneOffset22Selector.value); 
-        })
-        semitoneOffset23Selector.addEventListener('change', () => { 
-            semitoneOffset23 = parseInt(semitoneOffset23Selector.value); 
-        })
-        semitoneOffset24Selector.addEventListener('change', () => { 
-            semitoneOffset24 = parseInt(semitoneOffset24Selector.value); 
         })
 
         document.addEventListener('keydown', (event) => {
