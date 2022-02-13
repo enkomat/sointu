@@ -100,6 +100,11 @@ const semitoneOffset22Selector = document.querySelector('#offset-22');
 const semitoneOffset23Selector = document.querySelector('#offset-23');
 const semitoneOffset24Selector = document.querySelector('#offset-24');
 
+const rootDoublerSelector1 = document.querySelector('#doubler-1');
+const rootDoublerSelector2 = document.querySelector('#doubler-2');
+const rootDoublerSelector3 = document.querySelector('#doubler-3');
+const rootDoublerSelector4 = document.querySelector('#doubler-4');
+
 let selectedStartNote = 'C';
 let selectedOctave = '1';
 let selectedChord;
@@ -110,7 +115,6 @@ let firstChordRoot = 0;
 let secondChordRoot = 0;
 let thirdChordRoot = 0;
 
-let rootDoubler1 = 0;
 let doubler12 = 0;
 let doubler13 = 0;
 let doubler14 = 0;
@@ -128,7 +132,7 @@ let doubleUpwards6 = false;
 let doubleUpwards7 = false;
 let doubleUpwards8 = false;
 
-
+let rootDoubler1 = 0;
 let rootDoubler2 = 0;
 let rootDoubler3 = 0;
 let rootDoubler4 = 0;
@@ -447,8 +451,8 @@ const app = {
                 
                 //soundEngine.playNote(16+zeroChordRoot+key);
                 soundEngine.playNote(24+0+(12*octaveMultiplier1)+zeroChordRoot+key+(rootOctaveOffset*12));
-                console.log(rootOctaveOffset);
-                console.log(24+0+(12*octaveMultiplier1)+zeroChordRoot+key+(rootOctaveOffset*12));
+                if(rootDoubler1 > 0) soundEngine.playNote(24+12+(12*octaveMultiplier1)+zeroChordRoot+key+(rootOctaveOffset*12));
+                if(rootDoubler1 > 1) soundEngine.playNote(24+24+(12*octaveMultiplier1)+zeroChordRoot+key+(rootOctaveOffset*12));
                 //soundEngine.playNote(24+12+zeroChordRoot+key);
                 //soundEngine.playNote(24+24+zeroChordRoot+key);
             }
@@ -499,6 +503,8 @@ const app = {
                 //sound.stop(noteIds[24+0+9]);
                 //soundEngine.playNote(16+firstChordRoot+key);
                 soundEngine.playNote(24+0+(12*octaveMultiplier9)+semitoneOffset9+firstChordRoot+key+(rootOctaveOffset*12));
+                if(rootDoubler2 > 0) soundEngine.playNote(24+12+(12*octaveMultiplier9)+semitoneOffset9+firstChordRoot+key+(rootOctaveOffset*12));
+                if(rootDoubler2 > 1) soundEngine.playNote(24+24+(12*octaveMultiplier9)+semitoneOffset9+firstChordRoot+key+(rootOctaveOffset*12));
                 //soundEngine.playNote(24+12+firstChordRoot+key);
             }
             if (event.key === 'w') {
@@ -527,6 +533,7 @@ const app = {
                 //this.displayAndPlayChord('maj7');
 
                 soundEngine.playNote(24+16+(12*octaveMultiplier14)+semitoneOffset14+firstChordRoot+firstChordMinorOffset+key);
+                
                 //soundEngine.playNote(8+4+key+firstChordRoot);
             }
             if (event.key === 'u') {
@@ -547,6 +554,8 @@ const app = {
                 //sound.stop(noteIds[24+0+9]);
                 //soundEngine.playNote(16+secondChordRoot+key);
                 soundEngine.playNote(24+0+(12*octaveMultiplier17)+semitoneOffset17+secondChordRoot+key+(rootOctaveOffset*12));
+                if(rootDoubler3 > 0) soundEngine.playNote(24+12+(12*octaveMultiplier17)+semitoneOffset17+secondChordRoot+key+(rootOctaveOffset*12));
+                if(rootDoubler3 > 1) soundEngine.playNote(24+24+(12*octaveMultiplier17)+semitoneOffset17+secondChordRoot+key+(rootOctaveOffset*12));
             }
             if (event.key === 's') {
                 //this.displayAndPlayChord('maj7');
@@ -589,6 +598,8 @@ const app = {
                 //sound.stop(noteIds[24+0+9]);
                 //soundEngine.playNote(16+thirdChordRoot+key);
                 soundEngine.playNote(24+0+(12*octaveMultiplier25)+thirdChordRoot+key+(rootOctaveOffset*12));
+                if(rootDoubler4 > 0) soundEngine.playNote(24+12+(12*octaveMultiplier25)+thirdChordRoot+key+(rootOctaveOffset*12));
+                if(rootDoubler4 > 1) soundEngine.playNote(24+24+(12*octaveMultiplier25)+thirdChordRoot+key+(rootOctaveOffset*12));
                 //soundEngine.playNote(24+12+0+thirdChordRoot+key);
             }
             if (event.key === 'x') {
