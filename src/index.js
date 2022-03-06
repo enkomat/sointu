@@ -2,8 +2,44 @@ import { transpose , note } from '@tonaljs/tonal';
 import { chord } from '@tonaljs/chord';
 import { entries } from '@tonaljs/chord-dictionary';
 import { Howler, howl } from 'howler';
-import * as fs from 'fs';
 
+const browserFs = require('browser-fs-access');
+
+const MidiWriter = require('midi-writer-js');
+
+const track = new MidiWriter.Track();
+
+const write = new MidiWriter.Writer(track);
+
+/*
+const MidiWriter = require('midi-writer-js');
+
+// Start with a new track
+const track = new MidiWriter.Track();
+
+// Define an instrument (optional):
+track.addEvent(new MidiWriter.ProgramChangeEvent({instrument: 1}));
+
+// Add some notes:
+const note = new MidiWriter.NoteEvent({pitch: ['C4', 'D4', 'E4'], duration: '4'});
+track.addEvent(note);
+
+// Generate a data URI
+const write = new MidiWriter.Writer(track);
+console.log(write.buildData());
+var data = write.buildData();
+
+const options = {
+    // Suggested file name to use, defaults to `''`.
+    fileName: 'Test.json',
+    // Suggested file extensions (with leading '.'), defaults to `''`.
+    extensions: ['.json']
+  };
+
+blob = new Blob(data);
+
+browserFs.fileSave(blob, options);
+*/
 
 const sound = new Howl({
     src: ['assets/GlassSprite.mp3'],
@@ -16,7 +52,13 @@ const sound = new Howl({
     }
 });
 
-console.log()
+const kick = new Howl({
+    src: ['assets/kick2.mp3']
+});
+
+const clap = new Howl({
+    src: ['assets/clap.mp3']
+});
 
 let startTime;
 
@@ -196,56 +238,29 @@ let firstChordMinorOffset = 0;
 let secondChordMinorOffset = 0;
 let thirdChordMinorOffset = 0;
 
+let recording = false;
+
 const rootOctaveOffsetSelector = document.querySelector('#root-pitch');
 let rootOctaveOffset = 0;
+
+var tickInterval;
+var kickInterval;
+var waitTime = 0;
+var writableNotes = [];
+var lastNoteString;
+let counter = 0;
 
 const noteIds = [];
 
 const app = {
     init() {
         /*
-        var JZZ = require('jzz');
-        require('jzz-midi-smf')(JZZ);
-        var smf = new JZZ.MIDI.SMF(0, 96); // type 0, 96 ticks per quarter note
-        var trk = new JZZ.MIDI.SMF.MTrk();
-        smf.push(trk);
-        // add contents:
-        trk.add(0, JZZ.MIDI.smfSeqName('This is a sequence name'))
-        .add(0, JZZ.MIDI.smfBPM(90)) // tempo 90 bpm
-        .add(96, JZZ.MIDI.noteOn(0, 'C6', 127))
-        .add(96, JZZ.MIDI.noteOn(0, 'Eb6', 127))
-        .add(96, JZZ.MIDI.noteOn(0, 'G6', 127))
-        .add(192, JZZ.MIDI.noteOff(0, 'C6'))
-        .add(192, JZZ.MIDI.noteOff(0, 'Eb6'))
-        .add(192, JZZ.MIDI.noteOff(0, 'G6'))
-        .add(288, JZZ.MIDI.smfEndOfTrack());
-        // or an alternative way:
-        trk.smfSeqName('This is a sequence name').smfBPM(90).tick(96)
-        .noteOn(0, 'C6', 127).noteOn(0, 'Eb6', 127).noteOn(0, 'G6', 127)
-        .tick(96).noteOff(0, 'C6').noteOff(0, 'Eb6').noteOff(0, 'G6')
-        .tick(96).smfEndOfTrack();
-        // or even shorter:
-        trk.smfSeqName('This is a sequence name').smfBPM(90).tick(96)
-        .ch(0).note('C6', 127, 96).note('Eb6', 127, 96).note('G6', 127, 96)
-        .tick(192).smfEndOfTrack();
-
-        try {
-            fs.writeFileSync('out.mid', smf.dump(), 'binary');
-        } catch (err) {
-            console.log('Error writing Metadata.json:' + err.message)
-        }
-        */
-        /*
-        const fs = require('fs');
-  
-        let data = "This is a file containing a collection"
-                + " of programming languages.\n"
-        + "1. C\n2. C++\n3. Python";
-        
-        fs.writeFileSync("programming.txt", data);
-        console.log("File written successfully\n");
-        console.log("The written has the following contents:");
-        console.log(fs.readFileSync("programming.txt", "utf8"));
+        var track = [];
+        var write = new MidiWriter.Writer(track);
+        var buffer = new Buffer(write.buildFile());
+        fs.writeFile('my-midi-file.mid', buffer, function (err) {
+            if(err) throw err;
+        });
         */
         this.setupStartNotes();
         this.setupEventListeners();
@@ -443,6 +458,54 @@ const app = {
         })
 
         document.addEventListener('keydown', (event) => {
+            if(event.key === ' ')
+            {
+                if(!recording)
+                {
+                    var accumulatedTime =  0;
+                    var lastUpdate = Date.now();
+                    var addedTickAmt = 0;
+                    function tick() {
+                        var now = Date.now();
+                        var dt = now - lastUpdate;
+                        accumulatedTime += dt;
+                        if(addedTickAmt >= 127) {
+                            kick.play();
+                            /*
+                            track.addEvent([
+                                new MidiWriter.NoteEvent({pitch: 'C3', duration: 'T1'}),
+                                ], function(event, index) {
+                                return {sequential: true};
+                                }
+                            );
+                            */
+                            addedTickAmt = 0;
+                        }
+                        track.addEvent([
+                            new MidiWriter.NoteEvent({duration: 'T1'}),
+                            ], function(event, index) {
+                            return {sequential: true};
+                            }
+                        );
+                        addedTickAmt++;
+                        lastUpdate = now;
+                    }
+                    tickInterval = setInterval(tick, 0);
+                    recording = true;
+                }
+                else
+                {
+                    clearInterval(tickInterval);
+                    clearInterval(kickInterval);
+                    var dataUri = write.dataUri();
+                    window.open(dataUri);
+                    recording = false;
+                }
+            }
+            if(event.key === 'Enter')
+            {
+                
+            }
             if (event.key === '1') {
                 //this.displayAndPlayChord('maj7');
                 //sound.stop(noteIds[24+0+0]);
@@ -492,7 +555,7 @@ const app = {
             }
             if (event.key === '8') {
                 //this.displayAndPlayChord('maj7');
-                soundEngine.playNote(24+0+(12*octaveMultiplier8)+zeroChordRoot+key);
+                soundEngine.playNote(24+23+(12*octaveMultiplier8)+zeroChordRoot+key+zeroChordMinorOffset);
                 //soundEngine.playNote(8+11+key+zeroChordRoot);
             }
             
@@ -543,7 +606,7 @@ const app = {
             }
             if (event.key === 'i') {
                 //this.displayAndPlayChord('maj7');
-                soundEngine.playNote(24+11+(12*octaveMultiplier16)+semitoneOffset16+firstChordRoot+firstChordMinorOffset+key);
+                soundEngine.playNote(24+11+(12*octaveMultiplier16)+semitoneOffset16+firstChordRoot+firstChordMinorOffset+key+12);
                 //soundEngine.playNote(8+11+key+firstChordRoot);
             }
 
@@ -588,7 +651,7 @@ const app = {
             }
             if (event.key === 'k') {
                 //this.displayAndPlayChord('maj7');
-                soundEngine.playNote(24+11+(12*octaveMultiplier24)+semitoneOffset24+secondChordRoot+secondChordMinorOffset+key);
+                soundEngine.playNote(24+11+(12*octaveMultiplier24)+semitoneOffset24+secondChordRoot+secondChordMinorOffset+key+12);
             }
             
             if (event.key === 'z') {
@@ -632,7 +695,7 @@ const app = {
             }
             if (event.key === ',') {
                 //this.displayAndPlayChord('maj7');
-                soundEngine.playNote(24+11+(12*octaveMultiplier32)+thirdChordRoot+thirdChordMinorOffset+key);
+                soundEngine.playNote(24+11+(12*octaveMultiplier32)+thirdChordRoot+thirdChordMinorOffset+key+12);
                 //soundEngine.playNote(8+11+key+thirdChordRoot);
             }
             
@@ -737,10 +800,20 @@ const soundEngine = {
     },
     playNote(noteNumber) {
         sound.play(noteNumber.toString());
+        if(recording)
+        {
+            var noteString = this.getNoteFromMidi(noteNumber);
+            var writableNote = {pitch: noteString, duration: 'T1'};
+            track.addEvent([
+                new MidiWriter.NoteEvent(writableNote),
+                ], function(event, index) {
+                return {sequential: true};
+                }
+            );
+        }
         console.log((Date.now() - startTime) + " " + noteNumber);
     },
     play(soundSequence) {
-
         const chordMidiNumbers = soundSequence.map(noteName => {
             return note(noteName).midi;
         });
@@ -749,6 +822,13 @@ const soundEngine = {
             
             sound.play(noteMidiNumber.toString());
         });
+    },
+    getNoteFromMidi(noteNumber) {
+        var noteArray = [ "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B" ];
+        var octave = Math.floor(((noteNumber / 12) - 1) + 3);
+        var noteIndex = (noteNumber % 12);
+        console.log(noteArray[noteIndex] + octave);
+        return noteArray[noteIndex] + octave;
     }
 }
 
