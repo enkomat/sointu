@@ -8,142 +8,146 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="controls">
-        Key:
-        <input type='range' min='-24' max='24' value='0' id='start-note'></input>
-        Minor-Major:<input type='range' min='-1' max='0' value='0' id='first-type'></input>
-        Root pitch:<input type='range' min='-4' max='0' value='0' id='root-pitch'></input>
-        <br><br>
-        <div id="full-width">
-            <b>First chord</b>
-            <br>
-            <div>
+    <div id='div1'></div>
+        <div>
+            <div id="full-width">
                 <div id="border-box">
-                    1
-                    <input type='range' min='-3' max='3' value='0' id='mult-1'></input>
+                    Key:
+                    <br>
+                    <input type='range' min='-24' max='24' value='0' id='start-note'></input>
                 </div>
                 <div id="border-box">
-                    2
-                    <input type='range' min='-3' max='3' value='0' id='mult-2'></input>
-                </div>
+                    Major-Minor:<br><input type='range' min='-1' max='0' value='0' id='first-type'></input>
                 </div>
                 <div id="border-box">
-                    3
-                    <input type='range' min='-3' max='3' value='0' id='mult-3'></input>
+                    Root pitch:<br><input type='range' min='-4' max='0' value='0' id='root-pitch'></input>
                 </div>
-                <div id="border-box">
-                    4
-                    <input type='range' min='-3' max='3' value='0' id='mult-4'></input>
-                </div>
-                <div id="border-box">
-                    5
-                    <input type='range' min='-3' max='3' value='0' id='mult-5'></input>
-                </div>
-                <div id="border-box">
-                    6
-                    <input type='range' min='-3' max='3' value='0' id='mult-6'></input>
-                </div>
-                <div id="border-box">
-                    7
-                    <input type='range' min='-3' max='3' value='0' id='mult-7'></input>
-                </div>
-                <div id="border-box">
-                    8
-                    <input type='range' min='-3' max='3' value='0' id='mult-8'></input>
-                </div>
+                <br>
+                <div id="border-box"><input type='button' value='Record'></input></div>
+                <div id="border-box"><input type='button' value='Stop record'></input></div>
             </div>
+                <div id="full-width">
+                    <b>First chord</b>
+                    <br>
+                    <div>
+                        <div id="border-box">
+                            <b>1</b>
+                            <input type='range' min='-3' max='3' value='0' id='mult-1'></input>
+                        </div>
+                        <div id="border-box">
+                            2
+                            <input type='range' min='-3' max='3' value='0' id='mult-2'></input>
+                        </div>
+                        </div>
+                        <div id="border-box">
+                            3
+                            <input type='range' min='-3' max='3' value='0' id='mult-3'></input>
+                        </div>
+                        <div id="border-box">
+                            4
+                            <input type='range' min='-3' max='3' value='0' id='mult-4'></input>
+                        </div>
+                        <br>
+                        <div id="border-box">
+                            5
+                            <input type='range' min='-3' max='3' value='0' id='mult-5'></input>
+                        </div>
+                        <div id="border-box">
+                            6
+                            <input type='range' min='-3' max='3' value='0' id='mult-6'></input>
+                        </div>
+                        <div id="border-box">
+                            7
+                            <input type='range' min='-3' max='3' value='0' id='mult-7'></input>
+                        </div>
+                        <div id="border-box">
+                            8
+                            <input type='range' min='-3' max='3' value='0' id='mult-8'></input>
+                        </div>
+                    </div>
         </div>
-        <br><br><br><br>
-        <div id="full-width">
+        <div>
+        <div id="full-width-r">
             <b>Second chord</b>
             <br>
-            <div id="border-box">Root note:<input type='range' min='0' max='6' value='0' id='second-chord'></input></div>
-            <div id="border-box"><input type='button' value='Flip chord' id='second-type'></input></div>
-            <br><br><br>
-            <div>
-                <div id="border-box">
-                    Q
-                    <input type='range' min='-3' max='3' value='0' id='mult-9'></input>
-                </div>
-                <div id="border-box">
-                    W
-                    <input type='range' min='-3' max='3' value='0' id='mult-10'></input>
-                </div>
-                </div>
-                <div id="border-box">
-                    E
-                    <input type='range' min='-3' max='3' value='0' id='mult-11'></input>
-                </div>
-                <div id="border-box">
-                    R
-                    <input type='range' min='-3' max='3' value='0' id='mult-12'></input>
-                </div>
-                <div id="border-box">
-                    T
-                    <input type='range' min='-3' max='3' value='0' id='mult-13'></input>
-                </div>
-                <div id="border-box">
-                    Y
-                    <input type='range' min='-3' max='3' value='0' id='mult-14'></input>
-                </div>
-                <div id="border-box">
-                    U
-                    <input type='range' min='-3' max='3' value='0' id='mult-15'></input>
-                </div>
-                <div id="border-box">
-                    I
-                    <input type='range' min='-3' max='3' value='0' id='mult-16'></input>
-                </div>
+            <div id="border-box">
+                Q
+                <input type='range' min='-3' max='3' value='0' id='mult-9'></input>
             </div>
+            <div id="border-box">
+                W
+                <input type='range' min='-3' max='3' value='0' id='mult-10'></input>
+            </div>
+            <div id="border-box">
+                E
+                <input type='range' min='-3' max='3' value='0' id='mult-11'></input>
+            </div>
+            <div id="border-box">
+                R
+                <input type='range' min='-3' max='3' value='0' id='mult-12'></input>
+            </div>
+            <div id="border-box">
+                T
+                <input type='range' min='-3' max='3' value='0' id='mult-13'></input>
+            </div>
+            <div id="border-box">
+                Y
+                <input type='range' min='-3' max='3' value='0' id='mult-14'></input>
+            </div>
+            <div id="border-box">
+                U
+                <input type='range' min='-3' max='3' value='0' id='mult-15'></input>
+            </div>
+            <div id="border-box">
+                I
+                <input type='range' min='-3' max='3' value='0' id='mult-16'></input>
+            </div>
+            <div id="border-box">Root note:<input type='range' min='0' max='6' value='0' id='second-chord'></input></div>
+            <div id="border-box">Octave:<input type='range' min='-2' max='2' value='0' id='oct-2'></input></div>
+            <div id="border-box"><input type='button' value='Flip chord' id='second-type'></input></div>
         </div>
-        <div  id="full-width">
+        <div  id="full-width-r">
             <b>Third chord</b>
             <br>
-            <div id="border-box">Root note:<input type='range' min='0' max='6' value='0' id='third-chord'></input></div>
-            <div id="border-box"><input type='button' value='Flip chord' id='third-type'></input></div>
-            <br><br><br>
-            <div>
-                <div id="border-box">
-                    A
-                    <input type='range' min='-3' max='3' value='0' id='mult-17'></input>
-                </div>
-                <div id="border-box">
-                    S
-                    <input type='range' min='-3' max='3' value='0' id='mult-18'></input>
-                </div>
-                </div>
-                <div id="border-box">
-                    D
-                    <input type='range' min='-3' max='3' value='0' id='mult-19'></input>
-                </div>
-                <div id="border-box">
-                    F
-                    <input type='range' min='-3' max='3' value='0' id='mult-20'></input>
-                </div>
-                <div id="border-box">
-                    G
-                    <input type='range' min='-3' max='3' value='0' id='mult-21'></input>
-                </div>
-                <div id="border-box">
-                    H
-                    <input type='range' min='-3' max='3' value='0' id='mult-22'></input>
-                </div>
-                <div id="border-box">
-                    J
-                    <input type='range' min='-3' max='3' value='0' id='mult-23'></input>
-                </div>
-                <div id="border-box">
-                    K
-                    <input type='range' min='-3' max='3' value='0' id='mult-24'></input>
-                </div>
+            <div id="border-box">
+                A
+                <input type='range' min='-3' max='3' value='0' id='mult-17'></input>
             </div>
+            <div id="border-box">
+                S
+                <input type='range' min='-3' max='3' value='0' id='mult-18'></input>
+            </div>
+            <div id="border-box">
+                D
+                <input type='range' min='-3' max='3' value='0' id='mult-19'></input>
+            </div>
+            <div id="border-box">
+                F
+                <input type='range' min='-3' max='3' value='0' id='mult-20'></input>
+            </div>
+            <div id="border-box">
+                G
+                <input type='range' min='-3' max='3' value='0' id='mult-21'></input>
+            </div>
+            <div id="border-box">
+                H
+                <input type='range' min='-3' max='3' value='0' id='mult-22'></input>
+            </div>
+            <div id="border-box">
+                J
+                <input type='range' min='-3' max='3' value='0' id='mult-23'></input>
+            </div>
+            <div id="border-box">
+                K
+                <input type='range' min='-3' max='3' value='0' id='mult-24'></input>
+            </div>
+            <div id="border-box">Root note:<input type='range' min='0' max='6' value='0' id='third-chord'></input></div>
+            <div id="border-box">Octave:<input type='range' min='-2' max='2' value='0' id='oct-3'></input></div>
+            <div id="border-box"><input type='button' value='Flip chord' id='third-type'></input></div>
         </div>
-        <div id="full-width">
+        <div id="full-width-r">
             <b>Fourth chord</b>
             <br>
-            <div id="border-box">Root note:<input type='range' min='0' max='6' value='0' id='fourth-chord'></input></div>
-            <div id="border-box"><input type='button' value='Flip chord' id='fourth-type'></input></div>
-            <br><br><br>
             <div id="border-box">
                 Z
                 <input type='range' min='-3' max='3' value='0' id='mult-25'></input>
@@ -176,8 +180,11 @@
                 ;
                 <input type='range' min='-3' max='3' value='0' id='mult-32'></input>
             </div>
+            <div id="border-box">Root note:<input type='range' min='0' max='6' value='0' id='fourth-chord'></input></div>
+            <div id="border-box">Octave:<input type='range' min='-2' max='2' value='0' id='oct-4'></input></div>
+            <div id="border-box"><input type='button' value='Flip chord' id='fourth-type'></input></div>
         </div>
-    </div>
+        </div>
     <br>
     <script type="module" src="index.js"></script>
 </body>

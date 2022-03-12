@@ -5,7 +5,11 @@ body {
 }
 
 input[type=range] {
-    width: 40px;
+    writing-mode: bt-lr; /* IE */
+    -webkit-appearance: slider-vertical; /* Chromium */
+    height: 100px;
+    width: 10px;
+    float:right;
 }
 
 input[type=text] {
@@ -13,8 +17,7 @@ input[type=text] {
 }
 
 #border-box {
-    border: 1px solid #ccc !important;
-    border-radius: 10px;
+    border: 1px solid rgb(211, 211, 211) !important;
     display:inline;
     float:left;
     padding: 5px;
@@ -22,11 +25,32 @@ input[type=text] {
 }
 
 #full-width {
-    border: 1px solid #ccc !important;
-    border-radius: 10px;
+    border: 1px solid #000 !important;
     display:inline;
     float:left;
     padding: 20px;
     margin: 5px;
-    width: 70%;
+}
+
+#full-width-r {
+    border: 1px solid #000 !important;
+    display:inline;
+    float:right;
+    padding: 20px;
+    margin: 5px;
+}
+
+#div1 {
+    float:right;
+    margin-right: 5px;
+    padding-bottom: 5px;
+    padding-top: 5px;
+}
+
+.clear{
+    clear:both;
+}
+
+.clear-r{
+    clear:initial;
 }

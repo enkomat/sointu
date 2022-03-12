@@ -2,14 +2,25 @@ import { transpose , note } from '@tonaljs/tonal';
 import { chord } from '@tonaljs/chord';
 import { entries } from '@tonaljs/chord-dictionary';
 import { Howler, howl } from 'howler';
+import 'custom-piano-keys'
 
 const browserFs = require('browser-fs-access');
 
 const MidiWriter = require('midi-writer-js');
 
-const track = new MidiWriter.Track();
+var pianokeys = document.createElement("custom-piano-keys")
+pianokeys.setAttribute("oct-count", "6")
+pianokeys.setAttribute("height", "79")
+pianokeys.setAttribute("stroke-w", "1")
+pianokeys.setAttribute("mark-color", "black")
+pianokeys.setAttribute("mark-diameter", "75")
+pianokeys.setAttribute("b-key-h", "75")
+element = document.getElementById("div1");
+element.insertBefore(pianokeys, element.firstChild);
 
-const write = new MidiWriter.Writer(track);
+let track = new MidiWriter.Track();
+
+let write = new MidiWriter.Writer(track);
 
 /*
 const MidiWriter = require('midi-writer-js');
@@ -53,7 +64,7 @@ const sound = new Howl({
 });
 
 const kick = new Howl({
-    src: ['assets/kick2.mp3']
+    src: ['assets/metronome2.mp3']
 });
 
 const clap = new Howl({
@@ -87,6 +98,11 @@ const doubleUpwards5Selector = document.querySelector('#upwards-1-5');
 const doubleUpwards6Selector = document.querySelector('#upwards-1-6');
 const doubleUpwards7Selector = document.querySelector('#upwards-1-7');
 const doubleUpwards8Selector = document.querySelector('#upwards-1-8');
+
+const octaveTranspose1Selector = document.querySelector('#oct-1');
+const octaveTranspose2Selector = document.querySelector('#oct-2');
+const octaveTranspose3Selector = document.querySelector('#oct-3');
+const octaveTranspose4Selector = document.querySelector('#oct-4');
 
 const octaveMultiplier1Selector = document.querySelector('#mult-1');
 const octaveMultiplier2Selector = document.querySelector('#mult-2');
@@ -179,6 +195,11 @@ let rootDoubler2 = 0;
 let rootDoubler3 = 0;
 let rootDoubler4 = 0;
 
+let octaveTranspose1 = 0;
+let octaveTranspose2 = 0;
+let octaveTranspose3 = 0;
+let octaveTranspose4 = 0;
+
 let octaveMultiplier1 = 0;
 let octaveMultiplier2 = 0;
 let octaveMultiplier3 = 0;
@@ -249,6 +270,9 @@ var waitTime = 0;
 var writableNotes = [];
 var lastNoteString;
 let counter = 0;
+let tickAmt = 0;
+
+let markedKeys = [];
 
 const noteIds = [];
 
@@ -342,10 +366,12 @@ const app = {
         secondTypeSelector.addEventListener('click', () => {
             if(firstChordMinorOffset == 0) firstChordMinorOffset = -1;
             else if(firstChordMinorOffset == -1) firstChordMinorOffset = 0;
+            console.log(firstChordMinorOffset);
         });
         thirdTypeSelector.addEventListener('click', () => {
             if(secondChordMinorOffset == 0) secondChordMinorOffset = -1;
             else if(secondChordMinorOffset == -1) secondChordMinorOffset = 0;
+            console.log(secondChordMinorOffset);
         });
         fourthTypeSelector.addEventListener('click', () => {
             if(thirdChordMinorOffset == 0) thirdChordMinorOffset = -1;
@@ -356,9 +382,20 @@ const app = {
             rootOctaveOffset = parseInt(rootOctaveOffsetSelector.value);
         })
 
+        octaveTranspose2Selector.addEventListener('change', () => { 
+            octaveTranspose2 = parseInt(octaveTranspose2Selector.value); 
+        })
+
+        octaveTranspose3Selector.addEventListener('change', () => { 
+            octaveTranspose3 = parseInt(octaveTranspose3Selector.value); 
+        })
+
+        octaveTranspose4Selector.addEventListener('change', () => { 
+            octaveTranspose4 = parseInt(octaveTranspose4Selector.value); 
+        })
+
         octaveMultiplier1Selector.addEventListener('change', () => { 
             octaveMultiplier1 = parseInt(octaveMultiplier1Selector.value); 
-            console.log("octave multiplier works");
         })
         octaveMultiplier2Selector.addEventListener('change', () => { 
             octaveMultiplier2 = parseInt(octaveMultiplier2Selector.value); 
@@ -462,14 +499,13 @@ const app = {
             {
                 if(!recording)
                 {
-                    var accumulatedTime =  0;
+                    var accumulatedTime = 0;
                     var lastUpdate = Date.now();
-                    var addedTickAmt = 0;
                     function tick() {
                         var now = Date.now();
                         var dt = now - lastUpdate;
                         accumulatedTime += dt;
-                        if(addedTickAmt >= 127) {
+                        if(tickAmt % 128 == 0) {
                             kick.play();
                             /*
                             track.addEvent([
@@ -479,15 +515,16 @@ const app = {
                                 }
                             );
                             */
-                            addedTickAmt = 0;
                         }
+                        /*
                         track.addEvent([
                             new MidiWriter.NoteEvent({duration: 'T1'}),
                             ], function(event, index) {
                             return {sequential: true};
                             }
                         );
-                        addedTickAmt++;
+                        */
+                        tickAmt++;
                         lastUpdate = now;
                     }
                     tickInterval = setInterval(tick, 0);
@@ -500,6 +537,9 @@ const app = {
                     var dataUri = write.dataUri();
                     window.open(dataUri);
                     recording = false;
+                    track = new MidiWriter.Track();
+                    write = new MidiWriter.Writer(track);
+                    tickAmt = 0;
                 }
             }
             if(event.key === 'Enter')
@@ -565,23 +605,21 @@ const app = {
                 //sound.stop(noteIds[24+0+7]);
                 //sound.stop(noteIds[24+0+9]);
                 //soundEngine.playNote(16+firstChordRoot+key);
-                soundEngine.playNote(24+0+(12*octaveMultiplier9)+semitoneOffset9+firstChordRoot+key+(rootOctaveOffset*12));
-                if(rootDoubler2 > 0) soundEngine.playNote(24+12+(12*octaveMultiplier9)+semitoneOffset9+firstChordRoot+key+(rootOctaveOffset*12));
-                if(rootDoubler2 > 1) soundEngine.playNote(24+24+(12*octaveMultiplier9)+semitoneOffset9+firstChordRoot+key+(rootOctaveOffset*12));
+                soundEngine.playNote(24+0+(12*octaveMultiplier9)+semitoneOffset9+firstChordRoot+key+(rootOctaveOffset*12)+(octaveTranspose2*12));
                 //soundEngine.playNote(24+12+firstChordRoot+key);
             }
             if (event.key === 'w') {
                 //this.displayAndPlayChord('maj7');
 
-                soundEngine.playNote(24+4+(12*octaveMultiplier10)+semitoneOffset10+firstChordRoot+firstChordMinorOffset+key);
+                soundEngine.playNote(24+4+(12*octaveMultiplier10)+semitoneOffset10+firstChordRoot+firstChordMinorOffset+key+(octaveTranspose2*12));
             }
             if (event.key === 'e') {
                 //this.displayAndPlayChord('maj7');
-                soundEngine.playNote(24+7+(12*octaveMultiplier11)+semitoneOffset11+firstChordRoot+key);
+                soundEngine.playNote(24+7+(12*octaveMultiplier11)+semitoneOffset11+firstChordRoot+key+(octaveTranspose2*12));
             }
             if (event.key === 'r') {
                 //this.displayAndPlayChord('maj7');
-                soundEngine.playNote(24+11+(12*octaveMultiplier12)+semitoneOffset12+firstChordRoot+firstChordMinorOffset+key);
+                soundEngine.playNote(24+11+(12*octaveMultiplier12)+semitoneOffset12+firstChordRoot+firstChordMinorOffset+key+(octaveTranspose2*12));
             }
             if (event.key === 't') {
                 //this.displayAndPlayChord('maj7');
@@ -589,24 +627,24 @@ const app = {
                 //sound.stop(noteIds[24+0+7]);
                 //sound.stop(noteIds[24+0+9]);
                 
-                soundEngine.playNote(24+14+(12*octaveMultiplier13)+semitoneOffset13+firstChordRoot+key);
+                soundEngine.playNote(24+14+(12*octaveMultiplier13)+semitoneOffset13+firstChordRoot+key+(octaveTranspose2*12));
                 //soundEngine.playNote(8+0+key+firstChordRoot);
             }
             if (event.key === 'y') {
                 //this.displayAndPlayChord('maj7');
 
-                soundEngine.playNote(24+16+(12*octaveMultiplier14)+semitoneOffset14+firstChordRoot+firstChordMinorOffset+key);
+                soundEngine.playNote(24+16+(12*octaveMultiplier14)+semitoneOffset14+firstChordRoot+firstChordMinorOffset+key+(octaveTranspose2*12));
                 
                 //soundEngine.playNote(8+4+key+firstChordRoot);
             }
             if (event.key === 'u') {
                 //this.displayAndPlayChord('maj7');
-                soundEngine.playNote(24+19+(12*octaveMultiplier15)+semitoneOffset15+firstChordRoot+key);
+                soundEngine.playNote(24+19+(12*octaveMultiplier15)+semitoneOffset15+firstChordRoot+key+(octaveTranspose2*12));
                 //soundEngine.playNote(8+7+key+firstChordRoot);
             }
             if (event.key === 'i') {
                 //this.displayAndPlayChord('maj7');
-                soundEngine.playNote(24+11+(12*octaveMultiplier16)+semitoneOffset16+firstChordRoot+firstChordMinorOffset+key+12);
+                soundEngine.playNote(24+11+(12*octaveMultiplier16)+semitoneOffset16+firstChordRoot+firstChordMinorOffset+key+12+(octaveTranspose2*12));
                 //soundEngine.playNote(8+11+key+firstChordRoot);
             }
 
@@ -616,42 +654,39 @@ const app = {
                 //sound.stop(noteIds[24+0+7]);
                 //sound.stop(noteIds[24+0+9]);
                 //soundEngine.playNote(16+secondChordRoot+key);
-                soundEngine.playNote(24+0+(12*octaveMultiplier17)+semitoneOffset17+secondChordRoot+key+(rootOctaveOffset*12));
-                if(rootDoubler3 > 0) soundEngine.playNote(24+12+(12*octaveMultiplier17)+semitoneOffset17+secondChordRoot+key+(rootOctaveOffset*12));
-                if(rootDoubler3 > 1) soundEngine.playNote(24+24+(12*octaveMultiplier17)+semitoneOffset17+secondChordRoot+key+(rootOctaveOffset*12));
+                soundEngine.playNote(24+0+(12*octaveMultiplier17)+semitoneOffset17+secondChordRoot+key+(rootOctaveOffset*12)+(octaveTranspose3*12));
             }
             if (event.key === 's') {
                 //this.displayAndPlayChord('maj7');
-                soundEngine.playNote(24+4+(12*octaveMultiplier18)+semitoneOffset18+secondChordRoot+secondChordMinorOffset+key);
-                console.log("oct mult: " + octaveMultiplier18);
+                soundEngine.playNote(24+4+(12*octaveMultiplier18)+semitoneOffset18+secondChordRoot+secondChordMinorOffset+key+(octaveTranspose3*12));
             }
             if (event.key === 'd') {
                 //this.displayAndPlayChord('maj7');
-                soundEngine.playNote(24+7+(12*octaveMultiplier19)+semitoneOffset19+secondChordRoot+key);
+                soundEngine.playNote(24+7+(12*octaveMultiplier19)+semitoneOffset19+secondChordRoot+key+(octaveTranspose3*12));
             }
             if (event.key === 'f') {
                 //this.displayAndPlayChord('maj7');
-                soundEngine.playNote(24+11+(12*octaveMultiplier20)+semitoneOffset20+secondChordRoot+secondChordMinorOffset+key);
+                soundEngine.playNote(24+11+(12*octaveMultiplier20)+semitoneOffset20+secondChordRoot+secondChordMinorOffset+key+(octaveTranspose3*12));
             }
             if (event.key === 'g') {
                 //this.displayAndPlayChord('maj7');
 
-                soundEngine.playNote(24+14+(12*octaveMultiplier21)+semitoneOffset21+secondChordRoot+key);
+                soundEngine.playNote(24+14+(12*octaveMultiplier21)+semitoneOffset21+secondChordRoot+key+(octaveTranspose3*12));
                 //soundEngine.playNote(8+0+key+secondChordRoot);
             }
             if (event.key === 'h') {
                 //this.displayAndPlayChord('maj7');
-                soundEngine.playNote(24+16+(12*octaveMultiplier22)+semitoneOffset22+secondChordRoot+secondChordMinorOffset+key);
+                soundEngine.playNote(24+16+(12*octaveMultiplier22)+semitoneOffset22+secondChordRoot+secondChordMinorOffset+key+(octaveTranspose3*12));
                 //soundEngine.playNote(8+4+key+secondChordRoot);
             }
             if (event.key === 'j') {
                 //this.displayAndPlayChord('maj7');
-                soundEngine.playNote(24+19+(12*octaveMultiplier23)+semitoneOffset23+secondChordRoot+key);
+                soundEngine.playNote(24+19+(12*octaveMultiplier23)+semitoneOffset23+secondChordRoot+key+(octaveTranspose3*12));
                 //soundEngine.playNote(8+7+key+secondChordRoot);
             }
             if (event.key === 'k') {
                 //this.displayAndPlayChord('maj7');
-                soundEngine.playNote(24+11+(12*octaveMultiplier24)+semitoneOffset24+secondChordRoot+secondChordMinorOffset+key+12);
+                soundEngine.playNote(24+11+(12*octaveMultiplier24)+semitoneOffset24+secondChordRoot+secondChordMinorOffset+key+12+(octaveTranspose3*12));
             }
             
             if (event.key === 'z') {
@@ -660,42 +695,205 @@ const app = {
                 //sound.stop(noteIds[24+0+7]);
                 //sound.stop(noteIds[24+0+9]);
                 //soundEngine.playNote(16+thirdChordRoot+key);
-                soundEngine.playNote(24+0+(12*octaveMultiplier25)+thirdChordRoot+key+(rootOctaveOffset*12));
-                if(rootDoubler4 > 0) soundEngine.playNote(24+12+(12*octaveMultiplier25)+thirdChordRoot+key+(rootOctaveOffset*12));
-                if(rootDoubler4 > 1) soundEngine.playNote(24+24+(12*octaveMultiplier25)+thirdChordRoot+key+(rootOctaveOffset*12));
+                soundEngine.playNote(24+0+(12*octaveMultiplier25)+thirdChordRoot+key+(rootOctaveOffset*12)+(octaveTranspose4*12));
                 //soundEngine.playNote(24+12+0+thirdChordRoot+key);
             }
             if (event.key === 'x') {
                 //this.displayAndPlayChord('maj7');
-                soundEngine.playNote(24+4+(12*octaveMultiplier26)+thirdChordRoot+thirdChordMinorOffset+key);
+                soundEngine.playNote(24+4+(12*octaveMultiplier26)+thirdChordRoot+thirdChordMinorOffset+key+(octaveTranspose4*12));
             }
             if (event.key === 'c') {
                 //this.displayAndPlayChord('maj7');
-                soundEngine.playNote(24+7+(12*octaveMultiplier27)+thirdChordRoot+key);
+                soundEngine.playNote(24+7+(12*octaveMultiplier27)+thirdChordRoot+key+(octaveTranspose4*12));
             }
             if (event.key === 'v') {
                 //this.displayAndPlayChord('maj7');
-                soundEngine.playNote(24+11+(12*octaveMultiplier28)+thirdChordRoot+thirdChordMinorOffset+key);
+                soundEngine.playNote(24+11+(12*octaveMultiplier28)+thirdChordRoot+thirdChordMinorOffset+key+(octaveTranspose4*12));
             }
             if (event.key === 'b') {
                 //this.displayAndPlayChord('maj7');
 
-                soundEngine.playNote(24+14+(12*octaveMultiplier29)+thirdChordRoot+key);
+                soundEngine.playNote(24+14+(12*octaveMultiplier29)+thirdChordRoot+key+(octaveTranspose4*12));
                 //soundEngine.playNote(8+0+key+thirdChordRoot);
             }
             if (event.key === 'n') {
                 //this.displayAndPlayChord('maj7');
-                soundEngine.playNote(24+16+(12*octaveMultiplier30)+thirdChordRoot+thirdChordMinorOffset+key);
+                soundEngine.playNote(24+16+(12*octaveMultiplier30)+thirdChordRoot+thirdChordMinorOffset+key+(octaveTranspose4*12));
                 //soundEngine.playNote(8+4+key+thirdChordRoot);
             }
             if (event.key === 'm') {
                 //this.displayAndPlayChord('maj7');
-                soundEngine.playNote(24+19+(12*octaveMultiplier31)+thirdChordRoot+key);
+                soundEngine.playNote(24+19+(12*octaveMultiplier31)+thirdChordRoot+key+(octaveTranspose4*12));
                 //soundEngine.playNote(8+7+key+thirdChordRoot);
             }
             if (event.key === ',') {
                 //this.displayAndPlayChord('maj7');
-                soundEngine.playNote(24+11+(12*octaveMultiplier32)+thirdChordRoot+thirdChordMinorOffset+key+12);
+                soundEngine.playNote(24+11+(12*octaveMultiplier32)+thirdChordRoot+thirdChordMinorOffset+key+12+(octaveTranspose4*12));
+                //soundEngine.playNote(8+11+key+thirdChordRoot);
+            }
+            
+            //console.log(event.keyCode);
+        });
+        document.addEventListener('keyup', (event) => {
+            if (event.key === '1') {
+                var markerIndex = markedKeys.indexOf(24+0+(12*octaveMultiplier1)+zeroChordRoot+key+(rootOctaveOffset*12)+1);
+                if(markerIndex > -1) markedKeys.splice(markerIndex,1);
+                pianokeys.setMarkedKeys(markedKeys);
+            }
+            if (event.key === '2') {
+                var markerIndex = markedKeys.indexOf(24+4+(12*octaveMultiplier2)+zeroChordRoot+zeroChordMinorOffset+key+1);
+                if(markerIndex > -1) markedKeys.splice(markerIndex,1);
+                pianokeys.setMarkedKeys(markedKeys);
+            }
+            if (event.key === '3') {
+                var markerIndex = markedKeys.indexOf(24+7+(12*octaveMultiplier3)+zeroChordRoot+key+1);
+                if(markerIndex > -1) markedKeys.splice(markerIndex,1);
+                pianokeys.setMarkedKeys(markedKeys);
+            }
+            if (event.key === '4') {
+                var markerIndex = markedKeys.indexOf(24+11+(12*octaveMultiplier4)+zeroChordRoot+zeroChordMinorOffset+key+1);
+                if(markerIndex > -1) markedKeys.splice(markerIndex,1);
+                pianokeys.setMarkedKeys(markedKeys);
+            }
+            if (event.key === '5') {
+                var markerIndex = markedKeys.indexOf(24+14+(12*octaveMultiplier5)+zeroChordRoot+key+1);
+                if(markerIndex > -1) markedKeys.splice(markerIndex,1);
+                pianokeys.setMarkedKeys(markedKeys);
+            }
+            if (event.key === '6') {
+                var markerIndex = markedKeys.indexOf(24+16+(12*octaveMultiplier6)+zeroChordRoot+zeroChordMinorOffset+key+1);
+                if(markerIndex > -1) markedKeys.splice(markerIndex,1);
+                pianokeys.setMarkedKeys(markedKeys);
+            }
+            if (event.key === '7') {
+                var markerIndex = markedKeys.indexOf(24+19+(12*octaveMultiplier7)+zeroChordRoot+key+1);
+                if(markerIndex > -1) markedKeys.splice(markerIndex,1);
+                pianokeys.setMarkedKeys(markedKeys);
+            }
+            if (event.key === '8') {
+                var markerIndex = markedKeys.indexOf(24+23+(12*octaveMultiplier8)+zeroChordRoot+key+zeroChordMinorOffset+1);
+                if(markerIndex > -1) markedKeys.splice(markerIndex,1);
+                pianokeys.setMarkedKeys(markedKeys);
+            }
+            
+            if (event.key === 'q') {
+                var markerIndex = markedKeys.indexOf(24+0+(12*octaveMultiplier9)+semitoneOffset9+firstChordRoot+key+(rootOctaveOffset*12)+(octaveTranspose2*12)+1);
+                if(markerIndex > -1) markedKeys.splice(markerIndex,1);
+                pianokeys.setMarkedKeys(markedKeys);
+            }
+            if (event.key === 'w') {
+                var markerIndex = markedKeys.indexOf(24+4+(12*octaveMultiplier10)+semitoneOffset10+firstChordRoot+firstChordMinorOffset+key+(octaveTranspose2*12)+1);
+                if(markerIndex > -1) markedKeys.splice(markerIndex,1);
+                pianokeys.setMarkedKeys(markedKeys);
+            }
+            if (event.key === 'e') {
+                var markerIndex = markedKeys.indexOf(24+7+(12*octaveMultiplier11)+semitoneOffset11+firstChordRoot+key+(octaveTranspose2*12)+1);
+                if(markerIndex > -1) markedKeys.splice(markerIndex,1);
+                pianokeys.setMarkedKeys(markedKeys);
+            }
+            if (event.key === 'r') {
+                var markerIndex = markedKeys.indexOf(24+11+(12*octaveMultiplier12)+semitoneOffset12+firstChordRoot+firstChordMinorOffset+key+(octaveTranspose2*12)+1);
+                if(markerIndex > -1) markedKeys.splice(markerIndex,1);
+                pianokeys.setMarkedKeys(markedKeys);
+            }
+            if (event.key === 't') {
+                var markerIndex = markedKeys.indexOf(24+14+(12*octaveMultiplier13)+semitoneOffset13+firstChordRoot+key+(octaveTranspose2*12)+1);
+                if(markerIndex > -1) markedKeys.splice(markerIndex,1);
+                pianokeys.setMarkedKeys(markedKeys);
+            }
+            if (event.key === 'y') {
+                var markerIndex = markedKeys.indexOf(24+16+(12*octaveMultiplier14)+semitoneOffset14+firstChordRoot+firstChordMinorOffset+key+(octaveTranspose2*12)+1);
+                if(markerIndex > -1) markedKeys.splice(markerIndex,1);
+                pianokeys.setMarkedKeys(markedKeys);
+            }
+            if (event.key === 'u') {
+                var markerIndex = markedKeys.indexOf(24+19+(12*octaveMultiplier15)+semitoneOffset15+firstChordRoot+key+(octaveTranspose2*12)+1);
+                if(markerIndex > -1) markedKeys.splice(markerIndex,1);
+                pianokeys.setMarkedKeys(markedKeys);
+            }
+            if (event.key === 'i') {
+                var markerIndex = markedKeys.indexOf(24+11+(12*octaveMultiplier16)+semitoneOffset16+firstChordRoot+firstChordMinorOffset+key+12+(octaveTranspose2*12)+1);
+                if(markerIndex > -1) markedKeys.splice(markerIndex,1);
+                pianokeys.setMarkedKeys(markedKeys);
+            }
+
+            if (event.key === 'a') {
+                var markerIndex = markedKeys.indexOf(24+0+(12*octaveMultiplier17)+semitoneOffset17+secondChordRoot+key+(rootOctaveOffset*12)+(octaveTranspose3*12)+1);
+                if(markerIndex > -1) markedKeys.splice(markerIndex,1);
+                pianokeys.setMarkedKeys(markedKeys);
+            }
+            if (event.key === 's') {
+                soundEngine.playNote(24+4+(12*octaveMultiplier18)+semitoneOffset18+secondChordRoot+secondChordMinorOffset+key+(octaveTranspose3*12), true);
+            }
+            if (event.key === 'd') {
+                //this.displayAndPlayChord('maj7');
+                soundEngine.playNote(24+7+(12*octaveMultiplier19)+semitoneOffset19+secondChordRoot+key+(octaveTranspose3*12), true);
+            }
+            if (event.key === 'f') {
+                //this.displayAndPlayChord('maj7');
+                soundEngine.playNote(24+11+(12*octaveMultiplier20)+semitoneOffset20+secondChordRoot+secondChordMinorOffset+key+(octaveTranspose3*12), true);
+            }
+            if (event.key === 'g') {
+                //this.displayAndPlayChord('maj7');
+
+                soundEngine.playNote(24+14+(12*octaveMultiplier21)+semitoneOffset21+secondChordRoot+key+(octaveTranspose3*12), true);
+                //soundEngine.playNote(8+0+key+secondChordRoot);
+            }
+            if (event.key === 'h') {
+                //this.displayAndPlayChord('maj7');
+                soundEngine.playNote(24+16+(12*octaveMultiplier22)+semitoneOffset22+secondChordRoot+secondChordMinorOffset+key+(octaveTranspose3*12), true);
+                //soundEngine.playNote(8+4+key+secondChordRoot);
+            }
+            if (event.key === 'j') {
+                //this.displayAndPlayChord('maj7');
+                soundEngine.playNote(24+19+(12*octaveMultiplier23)+semitoneOffset23+secondChordRoot+key+(octaveTranspose3*12), true);
+                //soundEngine.playNote(8+7+key+secondChordRoot);
+            }
+            if (event.key === 'k') {
+                //this.displayAndPlayChord('maj7');
+                soundEngine.playNote(24+11+(12*octaveMultiplier24)+semitoneOffset24+secondChordRoot+secondChordMinorOffset+key+12+(octaveTranspose3*12), true);
+            }
+            
+            if (event.key === 'z') {
+                //this.displayAndPlayChord('maj7');
+                //sound.stop(noteIds[24+0+0]);
+                //sound.stop(noteIds[24+0+7]);
+                //sound.stop(noteIds[24+0+9]);
+                //soundEngine.playNote(16+thirdChordRoot+key);
+                soundEngine.playNote(24+0+(12*octaveMultiplier25)+thirdChordRoot+key+(rootOctaveOffset*12)+(octaveTranspose4*12), true);
+                //soundEngine.playNote(24+12+0+thirdChordRoot+key);
+            }
+            if (event.key === 'x') {
+                //this.displayAndPlayChord('maj7');
+                soundEngine.playNote(24+4+(12*octaveMultiplier26)+thirdChordRoot+thirdChordMinorOffset+key+(octaveTranspose4*12), true);
+            }
+            if (event.key === 'c') {
+                //this.displayAndPlayChord('maj7');
+                soundEngine.playNote(24+7+(12*octaveMultiplier27)+thirdChordRoot+key+(octaveTranspose4*12), true);
+            }
+            if (event.key === 'v') {
+                //this.displayAndPlayChord('maj7');
+                soundEngine.playNote(24+11+(12*octaveMultiplier28)+thirdChordRoot+thirdChordMinorOffset+key+(octaveTranspose4*12), true);
+            }
+            if (event.key === 'b') {
+                //this.displayAndPlayChord('maj7');
+
+                soundEngine.playNote(24+14+(12*octaveMultiplier29)+thirdChordRoot+key+(octaveTranspose4*12), true);
+                //soundEngine.playNote(8+0+key+thirdChordRoot);
+            }
+            if (event.key === 'n') {
+                //this.displayAndPlayChord('maj7');
+                soundEngine.playNote(24+16+(12*octaveMultiplier30)+thirdChordRoot+thirdChordMinorOffset+key+(octaveTranspose4*12), true);
+                //soundEngine.playNote(8+4+key+thirdChordRoot);
+            }
+            if (event.key === 'm') {
+                //this.displayAndPlayChord('maj7');
+                soundEngine.playNote(24+19+(12*octaveMultiplier31)+thirdChordRoot+key+(octaveTranspose4*12), true);
+                //soundEngine.playNote(8+7+key+thirdChordRoot);
+            }
+            if (event.key === ',') {
+                //this.displayAndPlayChord('maj7');
+                soundEngine.playNote(24+11+(12*octaveMultiplier32)+thirdChordRoot+thirdChordMinorOffset+key+12+(octaveTranspose4*12), true);
                 //soundEngine.playNote(8+11+key+thirdChordRoot);
             }
             
@@ -796,21 +994,32 @@ const soundEngine = {
             sound['_sprite'][i] = [timeIndex, lengthOfNote];
             timeIndex += lengthOfNote;
         }
-        
     },
-    playNote(noteNumber) {
-        sound.play(noteNumber.toString());
-        if(recording)
+    playNote(noteNumber, keyUp) {
+        var markerIndex = markedKeys.indexOf(noteNumber+1);
+        if(markerIndex > -1 && keyUp) 
         {
-            var noteString = this.getNoteFromMidi(noteNumber);
-            var writableNote = {pitch: noteString, duration: 'T1'};
-            track.addEvent([
-                new MidiWriter.NoteEvent(writableNote),
-                ], function(event, index) {
-                return {sequential: true};
-                }
-            );
+            markedKeys.splice(markerIndex,1);
+            pianokeys.setMarkedKeys(markedKeys);
         }
+        else
+        {
+            sound.play(noteNumber.toString());
+            markedKeys.push(noteNumber+1);
+            pianokeys.setMarkedKeys(markedKeys);
+            if(recording)
+            {
+                var noteString = this.getNoteFromMidi(noteNumber);
+                var writableNote = {pitch: noteString, startTick: tickAmt, duration: '2'};
+                track.addEvent([
+                    new MidiWriter.NoteEvent(writableNote),
+                    ], function(event, index) {
+                    return {sequential: false};
+                    }
+                );
+            }
+        }
+        
         console.log((Date.now() - startTime) + " " + noteNumber);
     },
     play(soundSequence) {
@@ -825,7 +1034,7 @@ const soundEngine = {
     },
     getNoteFromMidi(noteNumber) {
         var noteArray = [ "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B" ];
-        var octave = Math.floor(((noteNumber / 12) - 1) + 3);
+        var octave = Math.floor(((noteNumber / 12) - 1) + 2);
         var noteIndex = (noteNumber % 12);
         console.log(noteArray[noteIndex] + octave);
         return noteArray[noteIndex] + octave;
