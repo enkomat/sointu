@@ -12,26 +12,25 @@
         <div>
             <div id="full-width">
                 <div id="border-box">
-                    Key:
+                    Key
                     <br>
                     <input type='range' min='-24' max='24' value='0' id='start-note'></input>
                 </div>
                 <div id="border-box">
-                    Major-Minor:<br><input type='range' min='-1' max='0' value='0' id='first-type'></input>
+                    Maj/Min<br><input type='range' min='-1' max='0' value='0' id='first-type'></input>
                 </div>
                 <div id="border-box">
-                    Root pitch:<br><input type='range' min='-4' max='0' value='0' id='root-pitch'></input>
+                    Root<br><input type='range' min='-4' max='0' value='0' id='root-pitch'></input>
                 </div>
                 <br>
-                <div id="border-box"><input type='button' value='Record'></input></div>
-                <div id="border-box"><input type='button' value='Stop record'></input></div>
+                <div id="border-box"><input id="record-button" type='button' value='&#9679;'></input></div>
             </div>
                 <div id="full-width">
-                    <b>First chord</b>
+                    <div id="chord-text-2"><b>·</b></div>
                     <br>
                     <div>
                         <div id="border-box">
-                            <b>1</b>
+                            1
                             <input type='range' min='-3' max='3' value='0' id='mult-1'></input>
                         </div>
                         <div id="border-box">
@@ -66,9 +65,9 @@
                         </div>
                     </div>
         </div>
-        <div>
+        <div id="container-r">
         <div id="full-width-r">
-            <b>Second chord</b>
+            <div id="chord-text"><b>:</b></div>
             <br>
             <div id="border-box">
                 Q
@@ -102,12 +101,12 @@
                 I
                 <input type='range' min='-3' max='3' value='0' id='mult-16'></input>
             </div>
-            <div id="border-box">Root note:<input type='range' min='0' max='6' value='0' id='second-chord'></input></div>
-            <div id="border-box">Octave:<input type='range' min='-2' max='2' value='0' id='oct-2'></input></div>
+            <div id="border-box">Root<input type='range' min='0' max='6' value='0' id='second-chord'></input></div>
+            <div id="border-box">Octave<input type='range' min='-2' max='2' value='0' id='oct-2'></input></div>
             <div id="border-box"><input type='button' value='Flip chord' id='second-type'></input></div>
         </div>
         <div  id="full-width-r">
-            <b>Third chord</b>
+            <div id="chord-text"><b>∴</b></div>
             <br>
             <div id="border-box">
                 A
@@ -141,12 +140,12 @@
                 K
                 <input type='range' min='-3' max='3' value='0' id='mult-24'></input>
             </div>
-            <div id="border-box">Root note:<input type='range' min='0' max='6' value='0' id='third-chord'></input></div>
-            <div id="border-box">Octave:<input type='range' min='-2' max='2' value='0' id='oct-3'></input></div>
+            <div id="border-box">Root<input type='range' min='0' max='6' value='0' id='third-chord'></input></div>
+            <div id="border-box">Octave<input type='range' min='-2' max='2' value='0' id='oct-3'></input></div>
             <div id="border-box"><input type='button' value='Flip chord' id='third-type'></input></div>
         </div>
         <div id="full-width-r">
-            <b>Fourth chord</b>
+            <div id="chord-text"><b>∷</b></div>
             <br>
             <div id="border-box">
                 Z
@@ -180,8 +179,8 @@
                 ;
                 <input type='range' min='-3' max='3' value='0' id='mult-32'></input>
             </div>
-            <div id="border-box">Root note:<input type='range' min='0' max='6' value='0' id='fourth-chord'></input></div>
-            <div id="border-box">Octave:<input type='range' min='-2' max='2' value='0' id='oct-4'></input></div>
+            <div id="border-box">Root<input type='range' min='0' max='6' value='0' id='fourth-chord'></input></div>
+            <div id="border-box">Octave<input type='range' min='-2' max='2' value='0' id='oct-4'></input></div>
             <div id="border-box"><input type='button' value='Flip chord' id='fourth-type'></input></div>
         </div>
         </div>

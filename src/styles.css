@@ -1,5 +1,5 @@
 body {
-    font-family: Lato, sans-serif;
+    font-family: 'Courier New', Courier, monospace;
     color: black;
     background: #fff;
 }
@@ -38,6 +38,30 @@ input[type=text] {
     float:right;
     padding: 20px;
     margin: 5px;
+}
+
+#container-r {
+    display:inline;
+    max-width: 750px;
+    float:right;
+}
+
+#record-button {
+    font-size: 200px;
+}
+
+#chord-text {
+    font-size: 25px;
+    margin-left: 10px;
+    margin-top: -10px;
+    margin-bottom: -20px;
+}
+
+#chord-text-2 {
+    font-size: 25px;
+    margin-left: 0px;
+    margin-top: -10px;
+    margin-bottom: -20px;
 }
 
 #div1 {
