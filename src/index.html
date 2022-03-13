@@ -23,7 +23,14 @@
                     Root<br><input type='range' min='-4' max='0' value='0' id='root-pitch'></input>
                 </div>
                 <br>
-                <div id="border-box"><input id="record-button" type='button' value='&#9679;'></input></div>
+                <div id="general-controls">
+                    <div id="border-box"><input id="record-button" type='button' value='&#9679;'></input></div>
+                    <div id="border-box"><input id="download-button" type='button' value='↓'></input></div>
+                    <label for="tempo">Tempo </label>
+                    <input type="text" id="tempo" name="tempo" value="120">
+                    Sustain
+                    <input type="checkbox" id="sustain" name="sustain" value="Sustain">
+                </div>
             </div>
                 <div id="full-width">
                     <div id="chord-text-2"><b>·</b></div>
@@ -176,7 +183,7 @@
                 <input type='range' min='-3' max='3' value='0' id='mult-31'></input>
             </div>
             <div id="border-box">
-                ;
+                ∞
                 <input type='range' min='-3' max='3' value='0' id='mult-32'></input>
             </div>
             <div id="border-box">Root<input type='range' min='0' max='6' value='0' id='fourth-chord'></input></div>
