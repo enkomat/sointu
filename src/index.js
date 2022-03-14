@@ -281,9 +281,72 @@ let noteIds = new Array(100);
 let pressedNotes = [];
 for(i = 0; i < 100; i++) pressedNotes.push(false);
 
+const include1Selector = document.querySelector('#inc-1');
+const include2Selector  = document.querySelector('#inc-2');
+const include3Selector  = document.querySelector('#inc-3');
+const include4Selector  = document.querySelector('#inc-4');
+const include5Selector  = document.querySelector('#inc-5');
+const include6Selector  = document.querySelector('#inc-6');
+const include7Selector  = document.querySelector('#inc-7');
+const include8Selector  = document.querySelector('#inc-8');
+
+const include9Selector = document.querySelector('#inc-9');
+const include10Selector  = document.querySelector('#inc-10');
+const include11Selector  = document.querySelector('#inc-11');
+const include12Selector  = document.querySelector('#inc-12');
+const include13Selector  = document.querySelector('#inc-13');
+const include14Selector  = document.querySelector('#inc-14');
+const include15Selector  = document.querySelector('#inc-15');
+const include16Selector  = document.querySelector('#inc-16');
+
+const include17Selector = document.querySelector('#inc-17');
+const include18Selector  = document.querySelector('#inc-18');
+const include19Selector  = document.querySelector('#inc-19');
+const include20Selector  = document.querySelector('#inc-20');
+const include21Selector  = document.querySelector('#inc-21');
+const include22Selector  = document.querySelector('#inc-22');
+const include23Selector  = document.querySelector('#inc-23');
+const include24Selector  = document.querySelector('#inc-24');
+
+let include1 = false;
+let include2 = true;
+let include3 = true;
+let include4 = true;
+let include5 = true;
+let include6 = true;
+let include7 = true;
+let include8 = true;
+
+let include9 = false;
+let include10 = true;
+let include11 = true;
+let include12 = true;
+let include13 = true;
+let include14 = true;
+let include15 = true;
+let include16 = true;
+
+let include17 = false;
+let include18 = true;
+let include19 = true;
+let include20 = true;
+let include21 = true;
+let include22 = true;
+let include23 = true;
+let include24 = true;
+
+let include25 = true;
+let include26 = true;
+let include27 = true;
+let include28 = true;
+let include29 = true;
+let include30 = true;
+let include31 = true;
+let include32 = true;
+
 const sustainSelector = document.querySelector('#sustain');
 const tempoSelector = document.querySelector('#tempo');
-let sustainOn;
+let sustainOn = true;
 let dataUri;
 let tempo = 120;
 
@@ -358,6 +421,78 @@ const app = {
         });
         downloadButtonSelector.addEventListener('click', () => {
             window.open(dataUri);
+        });
+        include1Selector.addEventListener('change', () => {
+            include1 = !include1;
+        });
+        include2Selector.addEventListener('change', () => {
+            include2 = !include2;
+        });
+        include3Selector.addEventListener('change', () => {
+            include3 = !include3;
+        });
+        include4Selector.addEventListener('change', () => {
+            include4 = !include4;
+        });
+        include5Selector.addEventListener('change', () => {
+            include5 = !include5;
+        });
+        include6Selector.addEventListener('change', () => {
+            include6 = !include6;
+        });
+        include7Selector.addEventListener('change', () => {
+            include7 = !include7;
+        });
+        include8Selector.addEventListener('change', () => {
+            include8 = !include8;
+        });
+        include9Selector.addEventListener('change', () => {
+            include9 = !include9;
+        });
+        include10Selector.addEventListener('change', () => {
+            include10 = !include10;
+        });
+        include11Selector.addEventListener('change', () => {
+            include11 = !include11;
+        });
+        include12Selector.addEventListener('change', () => {
+            include12 = !include12;
+        });
+        include13Selector.addEventListener('change', () => {
+            include13 = !include13;
+        });
+        include14Selector.addEventListener('change', () => {
+            include14 = !include14;
+        });
+        include15Selector.addEventListener('change', () => {
+            include15 = !include15;
+        });
+        include16Selector.addEventListener('change', () => {
+            include16 = !include16;
+        });
+        include17Selector.addEventListener('change', () => {
+            include17 = !include17;
+        });
+        include18Selector.addEventListener('change', () => {
+            include18 = !include18;
+        });
+        include19Selector.addEventListener('change', () => {
+            include19 = !include19;
+        });
+        include20Selector.addEventListener('change', () => {
+            include20 = !include20;
+        });
+        include21Selector.addEventListener('change', () => {
+            include21 = !include21;
+        });
+        include22Selector.addEventListener('change', () => {
+            include22 = !include22;
+        });
+        include23Selector.addEventListener('change', () => {
+            include23 = !include23;
+        });
+        include24Selector.addEventListener('change', () => {
+            include24 = !include24;
         });
         sustainSelector.addEventListener('change', () => {
             sustainOn = !sustainOn;
@@ -530,6 +665,7 @@ const app = {
         document.addEventListener('keydown', (event) => {
             if(event.key === ' ')
             {
+                /*
                 if(!recording)
                 {
                     this.startRecording();
@@ -538,6 +674,8 @@ const app = {
                 {
                     this.stopRecording();
                 }
+                */
+               sound.stop();
             }
             if(event.key === 'Enter')
             {
@@ -549,9 +687,9 @@ const app = {
                 //sound.stop(noteIds[24+0+7]);
                 //sound.stop(noteIds[24+0+9]);
                 //soundEngine.playNote(16+zeroChordRoot+key);
-                soundEngine.playNote(24+0+(12*octaveMultiplier1)+zeroChordRoot+key+(rootOctaveOffset*12));
-                if(rootDoubler1 > 0) soundEngine.playNote(24+12+(12*octaveMultiplier1)+zeroChordRoot+key+(rootOctaveOffset*12));
-                if(rootDoubler1 > 1) soundEngine.playNote(24+24+(12*octaveMultiplier1)+zeroChordRoot+key+(rootOctaveOffset*12));
+                soundEngine.playNote(24+0+(octaveMultiplier1)+zeroChordRoot+key+(rootOctaveOffset*12));
+                if(rootDoubler1 > 0) soundEngine.playNote(24+12+(octaveMultiplier1)+zeroChordRoot+key+(rootOctaveOffset*12));
+                if(rootDoubler1 > 1) soundEngine.playNote(24+24+(octaveMultiplier1)+zeroChordRoot+key+(rootOctaveOffset*12));
                 //soundEngine.playNote(24+12+zeroChordRoot+key);
                 //soundEngine.playNote(24+24+zeroChordRoot+key);
                 this.changeFaderColor(octaveMultiplier1Selector.parentElement, false); 
@@ -559,18 +697,18 @@ const app = {
             if (event.key === '2') {
                 //this.displayAndPlayChord('maj7');
 
-                soundEngine.playNote(24+4+(12*octaveMultiplier2)+zeroChordRoot+zeroChordMinorOffset+key);
+                soundEngine.playNote(24+4+(octaveMultiplier2)+zeroChordRoot+zeroChordMinorOffset+key);
                 //this.doubleNote(24+4+zeroChordRoot+zeroChordMinorOffset+key, doubler12);
                 this.changeFaderColor(octaveMultiplier2Selector.parentElement, false);   
             }
             if (event.key === '3') {
                 //this.displayAndPlayChord('maj7');
-                soundEngine.playNote(24+7+(12*octaveMultiplier3)+zeroChordRoot+key);
+                soundEngine.playNote(24+7+(octaveMultiplier3)+zeroChordRoot+key);
                 this.changeFaderColor(octaveMultiplier3Selector.parentElement, false);   
             }
             if (event.key === '4') {
                 //this.displayAndPlayChord('maj7');
-                soundEngine.playNote(24+11+(12*octaveMultiplier4)+zeroChordRoot+zeroChordMinorOffset+key);
+                soundEngine.playNote(24+11+(octaveMultiplier4)+zeroChordRoot+zeroChordMinorOffset+key);
                 this.changeFaderColor(octaveMultiplier4Selector.parentElement, false);
             }
             if (event.key === '5') {
@@ -579,26 +717,26 @@ const app = {
                 //sound.stop(noteIds[24+0+7]);
                 //sound.stop(noteIds[24+0+9]);
                 
-                soundEngine.playNote(24+14+(12*octaveMultiplier5)+zeroChordRoot+key);
+                soundEngine.playNote(24+14+(octaveMultiplier5)+zeroChordRoot+key);
                 //soundEngine.playNote(8+0+key);
                 this.changeFaderColor(octaveMultiplier5Selector.parentElement, false);   
             }
             if (event.key === '6') {
                 //this.displayAndPlayChord('maj7');
 
-                soundEngine.playNote(24+16+(12*octaveMultiplier6)+zeroChordRoot+zeroChordMinorOffset+key);
+                soundEngine.playNote(24+16+(octaveMultiplier6)+zeroChordRoot+zeroChordMinorOffset+key);
                 //soundEngine.playNote(8+4+key);
                 this.changeFaderColor(octaveMultiplier6Selector.parentElement, false);   
             }
             if (event.key === '7') {
                 //this.displayAndPlayChord('maj7');
-                soundEngine.playNote(24+19+(12*octaveMultiplier7)+zeroChordRoot+key);
+                soundEngine.playNote(24+19+(octaveMultiplier7)+zeroChordRoot+key);
                 //soundEngine.playNote(8+7+key);
                 this.changeFaderColor(octaveMultiplier7Selector.parentElement, false);   
             }
             if (event.key === '8') {
                 //this.displayAndPlayChord('maj7');
-                soundEngine.playNote(24+23+(12*octaveMultiplier8)+zeroChordRoot+key+zeroChordMinorOffset);
+                soundEngine.playNote(24+23+(octaveMultiplier8)+zeroChordRoot+key+zeroChordMinorOffset);
                 //soundEngine.playNote(8+11+key+zeroChordRoot);
                 this.changeFaderColor(octaveMultiplier8Selector.parentElement, false);
             }
@@ -609,150 +747,198 @@ const app = {
                 //sound.stop(noteIds[24+0+7]);
                 //sound.stop(noteIds[24+0+9]);
                 //soundEngine.playNote(16+firstChordRoot+key);
-                soundEngine.playNote(24+0+(12*octaveMultiplier9)+semitoneOffset9+firstChordRoot+key+(rootOctaveOffset*12)+(octaveTranspose2*12));
+                let mult = 0
+                if(include1) mult = 12;
+                soundEngine.playNote(24+0+(octaveMultiplier9)+semitoneOffset9+firstChordRoot+key+(rootOctaveOffset*12)+(octaveTranspose2*mult));
                 //soundEngine.playNote(24+12+firstChordRoot+key);
                 this.changeFaderColor(octaveMultiplier9Selector.parentElement, false);  
             }
             if (event.key === 'w') {
                 //this.displayAndPlayChord('maj7');
+                let mult = 0
+                if(include2) mult = 12;
                 this.changeFaderColor(octaveMultiplier10Selector.parentElement, false);  
-                soundEngine.playNote(24+4+(12*octaveMultiplier10)+semitoneOffset10+firstChordRoot+firstChordMinorOffset+key+(octaveTranspose2*12));
+                soundEngine.playNote(24+4+(octaveMultiplier10)+semitoneOffset10+firstChordRoot+firstChordMinorOffset+key+(octaveTranspose2*mult));
             }
             if (event.key === 'e') {
+                let mult = 0
+                if(include3) mult = 12;
                 this.changeFaderColor(octaveMultiplier11Selector.parentElement, false);  
                 //this.displayAndPlayChord('maj7');
-                soundEngine.playNote(24+7+(12*octaveMultiplier11)+semitoneOffset11+firstChordRoot+key+(octaveTranspose2*12));
+                soundEngine.playNote(24+7+(octaveMultiplier11)+semitoneOffset11+firstChordRoot+key+(octaveTranspose2*mult));
             }
             if (event.key === 'r') {
+                let mult = 0
+                if(include4) mult = 12;
                 this.changeFaderColor(octaveMultiplier12Selector.parentElement, false);  
                 //this.displayAndPlayChord('maj7');
-                soundEngine.playNote(24+11+(12*octaveMultiplier12)+semitoneOffset12+firstChordRoot+firstChordMinorOffset+key+(octaveTranspose2*12));
+                soundEngine.playNote(24+11+(octaveMultiplier12)+semitoneOffset12+firstChordRoot+firstChordMinorOffset+key+(octaveTranspose2*mult));
             }
             if (event.key === 't') {
+                let mult = 0
+                if(include5) mult = 12;
                 //this.displayAndPlayChord('maj7');
                 //sound.stop(noteIds[24+0+0]);
                 //sound.stop(noteIds[24+0+7]);
                 //sound.stop(noteIds[24+0+9]);
                 this.changeFaderColor(octaveMultiplier13Selector.parentElement, false);  
-                soundEngine.playNote(24+14+(12*octaveMultiplier13)+semitoneOffset13+firstChordRoot+key+(octaveTranspose2*12));
+                soundEngine.playNote(24+14+(octaveMultiplier13)+semitoneOffset13+firstChordRoot+key+(octaveTranspose2*mult));
                 //soundEngine.playNote(8+0+key+firstChordRoot);
             }
             if (event.key === 'y') {
+                let mult = 0
+                if(include6) mult = 12;
                 //this.displayAndPlayChord('maj7');
                 this.changeFaderColor(octaveMultiplier14Selector.parentElement, false);  
-                soundEngine.playNote(24+16+(12*octaveMultiplier14)+semitoneOffset14+firstChordRoot+firstChordMinorOffset+key+(octaveTranspose2*12));
+                soundEngine.playNote(24+16+(octaveMultiplier14)+semitoneOffset14+firstChordRoot+firstChordMinorOffset+key+(octaveTranspose2*mult));
                 
                 //soundEngine.playNote(8+4+key+firstChordRoot);
             }
             if (event.key === 'u') {
+                let mult = 0
+                if(include7) mult = 12;
                 //this.displayAndPlayChord('maj7');
-                soundEngine.playNote(24+19+(12*octaveMultiplier15)+semitoneOffset15+firstChordRoot+key+(octaveTranspose2*12));
+                soundEngine.playNote(24+19+(octaveMultiplier15)+semitoneOffset15+firstChordRoot+key+(octaveTranspose2*mult));
                 //soundEngine.playNote(8+7+key+firstChordRoot);
                 this.changeFaderColor(octaveMultiplier15Selector.parentElement, false);  
             }
             if (event.key === 'i') {
+                let mult = 0
+                if(include8) mult = 12;
                 //this.displayAndPlayChord('maj7');
-                soundEngine.playNote(24+11+(12*octaveMultiplier16)+semitoneOffset16+firstChordRoot+firstChordMinorOffset+key+12+(octaveTranspose2*12));
+                soundEngine.playNote(24+11+(octaveMultiplier16)+semitoneOffset16+firstChordRoot+firstChordMinorOffset+key+12+(octaveTranspose2*mult));
                 //soundEngine.playNote(8+11+key+firstChordRoot);
                 this.changeFaderColor(octaveMultiplier16Selector.parentElement, false);  
             }
 
             if (event.key === 'a') {
+                let mult = 0
+                if(include9) mult = 12;
                 //this.displayAndPlayChord('maj7');
                 //sound.stop(noteIds[24+0+0]);
                 //sound.stop(noteIds[24+0+7]);
                 //sound.stop(noteIds[24+0+9]);
                 //soundEngine.playNote(16+secondChordRoot+key);
-                soundEngine.playNote(24+0+(12*octaveMultiplier17)+semitoneOffset17+secondChordRoot+key+(rootOctaveOffset*12)+(octaveTranspose3*12));
+                soundEngine.playNote(24+0+(octaveMultiplier17)+semitoneOffset17+secondChordRoot+key+(rootOctaveOffset*12)+(octaveTranspose3*mult));
                 this.changeFaderColor(octaveMultiplier17Selector.parentElement, false);  
             }
             if (event.key === 's') {
+                let mult = 0
+                if(include10) mult = 12;
                 //this.displayAndPlayChord('maj7');
-                soundEngine.playNote(24+4+(12*octaveMultiplier18)+semitoneOffset18+secondChordRoot+secondChordMinorOffset+key+(octaveTranspose3*12));
+                soundEngine.playNote(24+4+(octaveMultiplier18)+semitoneOffset18+secondChordRoot+secondChordMinorOffset+key+(octaveTranspose3*mult));
                 this.changeFaderColor(octaveMultiplier18Selector.parentElement, false);  
             }
             if (event.key === 'd') {
+                let mult = 0
+                if(include11) mult = 12;
                 //this.displayAndPlayChord('maj7');
-                soundEngine.playNote(24+7+(12*octaveMultiplier19)+semitoneOffset19+secondChordRoot+key+(octaveTranspose3*12));
+                soundEngine.playNote(24+7+(octaveMultiplier19)+semitoneOffset19+secondChordRoot+key+(octaveTranspose3*mult));
                 this.changeFaderColor(octaveMultiplier19Selector.parentElement, false); 
             }
             if (event.key === 'f') {
+                let mult = 0
+                if(include12) mult = 12;
                 //this.displayAndPlayChord('maj7');
-                soundEngine.playNote(24+11+(12*octaveMultiplier20)+semitoneOffset20+secondChordRoot+secondChordMinorOffset+key+(octaveTranspose3*12));
+                soundEngine.playNote(24+11+(octaveMultiplier20)+semitoneOffset20+secondChordRoot+secondChordMinorOffset+key+(octaveTranspose3*mult));
                 this.changeFaderColor(octaveMultiplier20Selector.parentElement, false);  
             }
             if (event.key === 'g') {
+                let mult = 0
+                if(include13) mult = 12;
                 //this.displayAndPlayChord('maj7');
 
-                soundEngine.playNote(24+14+(12*octaveMultiplier21)+semitoneOffset21+secondChordRoot+key+(octaveTranspose3*12));
+                soundEngine.playNote(24+14+(octaveMultiplier21)+semitoneOffset21+secondChordRoot+key+(octaveTranspose3*mult));
                 //soundEngine.playNote(8+0+key+secondChordRoot);
                 this.changeFaderColor(octaveMultiplier21Selector.parentElement, false);  
             }
             if (event.key === 'h') {
+                let mult = 0
+                if(include14) mult = 12;
                 //this.displayAndPlayChord('maj7');
-                soundEngine.playNote(24+16+(12*octaveMultiplier22)+semitoneOffset22+secondChordRoot+secondChordMinorOffset+key+(octaveTranspose3*12));
+                soundEngine.playNote(24+16+(octaveMultiplier22)+semitoneOffset22+secondChordRoot+secondChordMinorOffset+key+(octaveTranspose3*mult));
                 //soundEngine.playNote(8+4+key+secondChordRoot);
                 this.changeFaderColor(octaveMultiplier22Selector.parentElement, false);  
             }
             if (event.key === 'j') {
+                let mult = 0
+                if(include15) mult = 12;
                 //this.displayAndPlayChord('maj7');
-                soundEngine.playNote(24+19+(12*octaveMultiplier23)+semitoneOffset23+secondChordRoot+key+(octaveTranspose3*12));
+                soundEngine.playNote(24+19+(octaveMultiplier23)+semitoneOffset23+secondChordRoot+key+(octaveTranspose3*mult));
                 //soundEngine.playNote(8+7+key+secondChordRoot);
                 this.changeFaderColor(octaveMultiplier23Selector.parentElement, false);  
             }
             if (event.key === 'k') {
+                let mult = 0
+                if(include16) mult = 12;
                 //this.displayAndPlayChord('maj7');
-                soundEngine.playNote(24+11+(12*octaveMultiplier24)+semitoneOffset24+secondChordRoot+secondChordMinorOffset+key+12+(octaveTranspose3*12));
+                soundEngine.playNote(24+11+(octaveMultiplier24)+semitoneOffset24+secondChordRoot+secondChordMinorOffset+key+12+(octaveTranspose3*mult));
                 this.changeFaderColor(octaveMultiplier24Selector.parentElement, false);  
             }
             
             if (event.key === 'z') {
+                let mult = 0
+                if(include17) mult = 12;
                 //this.displayAndPlayChord('maj7');
                 //sound.stop(noteIds[24+0+0]);
                 //sound.stop(noteIds[24+0+7]);
                 //sound.stop(noteIds[24+0+9]);
                 //soundEngine.playNote(16+thirdChordRoot+key);
-                soundEngine.playNote(24+0+(12*octaveMultiplier25)+thirdChordRoot+key+(rootOctaveOffset*12)+(octaveTranspose4*12));
+                soundEngine.playNote(24+0+(octaveMultiplier25)+thirdChordRoot+key+(rootOctaveOffset*12)+(octaveTranspose4*mult));
                 //soundEngine.playNote(24+12+0+thirdChordRoot+key);
                 this.changeFaderColor(octaveMultiplier25Selector.parentElement, false);  
             }
             if (event.key === 'x') {
+                let mult = 0
+                if(include18) mult = 12;
                 //this.displayAndPlayChord('maj7');
-                soundEngine.playNote(24+4+(12*octaveMultiplier26)+thirdChordRoot+thirdChordMinorOffset+key+(octaveTranspose4*12));
+                soundEngine.playNote(24+4+(octaveMultiplier26)+thirdChordRoot+thirdChordMinorOffset+key+(octaveTranspose4*mult));
                 this.changeFaderColor(octaveMultiplier26Selector.parentElement, false);  
             }
             if (event.key === 'c') {
+                let mult = 0
+                if(include19) mult = 12;
                 //this.displayAndPlayChord('maj7');
-                soundEngine.playNote(24+7+(12*octaveMultiplier27)+thirdChordRoot+key+(octaveTranspose4*12));
+                soundEngine.playNote(24+7+(octaveMultiplier27)+thirdChordRoot+key+(octaveTranspose4*mult));
                 this.changeFaderColor(octaveMultiplier27Selector.parentElement, false);  
             }
             if (event.key === 'v') {
+                let mult = 0
+                if(include20) mult = 12;
                 //this.displayAndPlayChord('maj7');
-                soundEngine.playNote(24+11+(12*octaveMultiplier28)+thirdChordRoot+thirdChordMinorOffset+key+(octaveTranspose4*12));
+                soundEngine.playNote(24+11+(octaveMultiplier28)+thirdChordRoot+thirdChordMinorOffset+key+(octaveTranspose4*mult));
                 this.changeFaderColor(octaveMultiplier28Selector.parentElement, false);  
             }
             if (event.key === 'b') {
+                let mult = 0
+                if(include21) mult = 12;
                 //this.displayAndPlayChord('maj7');
 
-                soundEngine.playNote(24+14+(12*octaveMultiplier29)+thirdChordRoot+key+(octaveTranspose4*12));
+                soundEngine.playNote(24+14+(octaveMultiplier29)+thirdChordRoot+key+(octaveTranspose4*mult));
                 //soundEngine.playNote(8+0+key+thirdChordRoot);
                 this.changeFaderColor(octaveMultiplier29Selector.parentElement, false);  
             }
             if (event.key === 'n') {
+                let mult = 0
+                if(include22) mult = 12;
                 //this.displayAndPlayChord('maj7');
-                soundEngine.playNote(24+16+(12*octaveMultiplier30)+thirdChordRoot+thirdChordMinorOffset+key+(octaveTranspose4*12));
+                soundEngine.playNote(24+16+(octaveMultiplier30)+thirdChordRoot+thirdChordMinorOffset+key+(octaveTranspose4*mult));
                 //soundEngine.playNote(8+4+key+thirdChordRoot);
                 this.changeFaderColor(octaveMultiplier30Selector.parentElement, false);  
             }
             if (event.key === 'm') {
+                let mult = 0
+                if(include23) mult = 12;
                 //this.displayAndPlayChord('maj7');
-                soundEngine.playNote(24+19+(12*octaveMultiplier31)+thirdChordRoot+key+(octaveTranspose4*12));
+                soundEngine.playNote(24+19+(octaveMultiplier31)+thirdChordRoot+key+(octaveTranspose4*mult));
                 //soundEngine.playNote(8+7+key+thirdChordRoot);
                 this.changeFaderColor(octaveMultiplier31Selector.parentElement, false);  
             }
             if (event.key === ',') {
+                let mult = 0
+                if(include24) mult = 12;
                 //this.displayAndPlayChord('maj7');
-                soundEngine.playNote(24+11+(12*octaveMultiplier32)+thirdChordRoot+thirdChordMinorOffset+key+12+(octaveTranspose4*12));
+                soundEngine.playNote(24+11+(octaveMultiplier32)+thirdChordRoot+thirdChordMinorOffset+key+12+(octaveTranspose4*mult));
                 //soundEngine.playNote(8+11+key+thirdChordRoot);
                 this.changeFaderColor(octaveMultiplier32Selector.parentElement, false);  
             }
@@ -762,169 +948,217 @@ const app = {
         document.addEventListener('keyup', (event) => {
             if (event.key === '1') {
                 /*
-                var markerIndex = markedKeys.indexOf(24+0+(12*octaveMultiplier1)+zeroChordRoot+key+(rootOctaveOffset*12)+1);
+                var markerIndex = markedKeys.indexOf(24+0+(octaveMultiplier1)+zeroChordRoot+key+(rootOctaveOffset*12)+1);
                 if(markerIndex > -1) markedKeys.splice(markerIndex,1);
                 pianokeys.setMarkedKeys(markedKeys);
                 */
-                soundEngine.playNote(24+0+(12*octaveMultiplier1)+zeroChordRoot+key+(rootOctaveOffset*12), true);
+                soundEngine.playNote(24+0+(octaveMultiplier1)+zeroChordRoot+key+(rootOctaveOffset*12), true);
                 this.changeFaderColor(octaveMultiplier1Selector.parentElement, true);
             }
             if (event.key === '2') {
-                soundEngine.playNote(24+4+(12*octaveMultiplier2)+zeroChordRoot+zeroChordMinorOffset+key, true);
+                soundEngine.playNote(24+4+(octaveMultiplier2)+zeroChordRoot+zeroChordMinorOffset+key, true);
                 this.changeFaderColor(octaveMultiplier2Selector.parentElement, true);
             }
             if (event.key === '3') {
-                soundEngine.playNote(24+7+(12*octaveMultiplier3)+zeroChordRoot+key, true);
+                soundEngine.playNote(24+7+(octaveMultiplier3)+zeroChordRoot+key, true);
                 this.changeFaderColor(octaveMultiplier3Selector.parentElement, true);
             }
             if (event.key === '4') {
-                soundEngine.playNote(24+11+(12*octaveMultiplier4)+zeroChordRoot+zeroChordMinorOffset+key, true);
+                soundEngine.playNote(24+11+(octaveMultiplier4)+zeroChordRoot+zeroChordMinorOffset+key, true);
                 this.changeFaderColor(octaveMultiplier4Selector.parentElement, true);
             }
             if (event.key === '5') {
-                soundEngine.playNote(24+14+(12*octaveMultiplier5)+zeroChordRoot+key, true);
+                soundEngine.playNote(24+14+(octaveMultiplier5)+zeroChordRoot+key, true);
                 this.changeFaderColor(octaveMultiplier5Selector.parentElement, true);
             }
             if (event.key === '6') {
-                soundEngine.playNote(24+16+(12*octaveMultiplier6)+zeroChordRoot+zeroChordMinorOffset+key, true);
+                soundEngine.playNote(24+16+(octaveMultiplier6)+zeroChordRoot+zeroChordMinorOffset+key, true);
                 this.changeFaderColor(octaveMultiplier6Selector.parentElement, true);
             }
             if (event.key === '7') {
-                soundEngine.playNote(24+19+(12*octaveMultiplier7)+zeroChordRoot+key, true);
+                soundEngine.playNote(24+19+(octaveMultiplier7)+zeroChordRoot+key, true);
                 this.changeFaderColor(octaveMultiplier7Selector.parentElement, true);
             }
             if (event.key === '8') {
-                soundEngine.playNote(24+23+(12*octaveMultiplier8)+zeroChordRoot+key+zeroChordMinorOffset, true);
+                soundEngine.playNote(24+23+(octaveMultiplier8)+zeroChordRoot+key+zeroChordMinorOffset, true);
                 this.changeFaderColor(octaveMultiplier8Selector.parentElement, true);
             }
             
             if (event.key === 'q') {
-                soundEngine.playNote(24+0+(12*octaveMultiplier9)+semitoneOffset9+firstChordRoot+key+(rootOctaveOffset*12)+(octaveTranspose2*12), true);
+                let mult = 0
+                if(include1) mult = 12;
+                soundEngine.playNote(24+0+(octaveMultiplier9)+semitoneOffset9+firstChordRoot+key+(rootOctaveOffset*12)+(octaveTranspose2*mult), true);
                 this.changeFaderColor(octaveMultiplier9Selector.parentElement, true);
             }
             if (event.key === 'w') {
-                soundEngine.playNote(24+4+(12*octaveMultiplier10)+semitoneOffset10+firstChordRoot+firstChordMinorOffset+key+(octaveTranspose2*12), true);
+                let mult = 0
+                if(include2) mult = 12;
+                soundEngine.playNote(24+4+(octaveMultiplier10)+semitoneOffset10+firstChordRoot+firstChordMinorOffset+key+(octaveTranspose2*mult), true);
                 this.changeFaderColor(octaveMultiplier10Selector.parentElement, true);
             }
             if (event.key === 'e') {
-                soundEngine.playNote(24+7+(12*octaveMultiplier11)+semitoneOffset11+firstChordRoot+key+(octaveTranspose2*12), true);
+                let mult = 0
+                if(include3) mult = 12;
+                soundEngine.playNote(24+7+(octaveMultiplier11)+semitoneOffset11+firstChordRoot+key+(octaveTranspose2*mult), true);
                 this.changeFaderColor(octaveMultiplier11Selector.parentElement, true);
             }
             if (event.key === 'r') {
-                soundEngine.playNote(24+11+(12*octaveMultiplier12)+semitoneOffset12+firstChordRoot+firstChordMinorOffset+key+(octaveTranspose2*12), true);
+                let mult = 0
+                if(include4) mult = 12;
+                soundEngine.playNote(24+11+(octaveMultiplier12)+semitoneOffset12+firstChordRoot+firstChordMinorOffset+key+(octaveTranspose2*mult), true);
                 this.changeFaderColor(octaveMultiplier12Selector.parentElement, true);
             }
             if (event.key === 't') {
-                soundEngine.playNote(24+14+(12*octaveMultiplier13)+semitoneOffset13+firstChordRoot+key+(octaveTranspose2*12), true);
+                let mult = 0
+                if(include5) mult = 12;
+                soundEngine.playNote(24+14+(octaveMultiplier13)+semitoneOffset13+firstChordRoot+key+(octaveTranspose2*mult), true);
                 this.changeFaderColor(octaveMultiplier13Selector.parentElement, true);
             }
             if (event.key === 'y') {
-                soundEngine.playNote(24+16+(12*octaveMultiplier14)+semitoneOffset14+firstChordRoot+firstChordMinorOffset+key+(octaveTranspose2*12), true);
+                let mult = 0
+                if(include6) mult = 12;
+                soundEngine.playNote(24+16+(octaveMultiplier14)+semitoneOffset14+firstChordRoot+firstChordMinorOffset+key+(octaveTranspose2*mult), true);
                 this.changeFaderColor(octaveMultiplier14Selector.parentElement, true);
             }
             if (event.key === 'u') {
-                soundEngine.playNote(24+19+(12*octaveMultiplier15)+semitoneOffset15+firstChordRoot+key+(octaveTranspose2*12), true);
+                let mult = 0
+                if(include7) mult = 12;
+                soundEngine.playNote(24+19+(octaveMultiplier15)+semitoneOffset15+firstChordRoot+key+(octaveTranspose2*mult), true);
                 this.changeFaderColor(octaveMultiplier15Selector.parentElement, true);
             }
             if (event.key === 'i') {
-                soundEngine.playNote(24+11+(12*octaveMultiplier16)+semitoneOffset16+firstChordRoot+firstChordMinorOffset+key+12+(octaveTranspose2*12), true);
+                let mult = 0
+                if(include8) mult = 12;
+                soundEngine.playNote(24+11+(octaveMultiplier16)+semitoneOffset16+firstChordRoot+firstChordMinorOffset+key+12+(octaveTranspose2*mult), true);
                 this.changeFaderColor(octaveMultiplier16Selector.parentElement, true);
             }
 
             if (event.key === 'a') {
+                let mult = 0
+                if(include9) mult = 12;
                 /*
-                var markerIndex = markedKeys.indexOf(24+0+(12*octaveMultiplier17)+semitoneOffset17+secondChordRoot+key+(rootOctaveOffset*12)+(octaveTranspose3*12)+1);
+                var markerIndex = markedKeys.indexOf(24+0+(octaveMultiplier17)+semitoneOffset17+secondChordRoot+key+(rootOctaveOffset*12)+(octaveTranspose3*mult)+1);
                 if(markerIndex > -1) markedKeys.splice(markerIndex,1);
                 */
-                soundEngine.playNote(24+0+(12*octaveMultiplier17)+semitoneOffset17+secondChordRoot+key+(rootOctaveOffset*12)+(octaveTranspose3*12), true);
+                soundEngine.playNote(24+0+(octaveMultiplier17)+semitoneOffset17+secondChordRoot+key+(rootOctaveOffset*12)+(octaveTranspose3*mult), true);
                 this.changeFaderColor(octaveMultiplier17Selector.parentElement, true);
             }
             if (event.key === 's') {
-                soundEngine.playNote(24+4+(12*octaveMultiplier18)+semitoneOffset18+secondChordRoot+secondChordMinorOffset+key+(octaveTranspose3*12), true);
+                let mult = 0
+                if(include10) mult = 12;
+                soundEngine.playNote(24+4+(octaveMultiplier18)+semitoneOffset18+secondChordRoot+secondChordMinorOffset+key+(octaveTranspose3*mult), true);
                 this.changeFaderColor(octaveMultiplier18Selector.parentElement, true);
             }
             if (event.key === 'd') {
+                let mult = 0
+                if(include11) mult = 12;
                 //this.displayAndPlayChord('maj7');
-                soundEngine.playNote(24+7+(12*octaveMultiplier19)+semitoneOffset19+secondChordRoot+key+(octaveTranspose3*12), true);
+                soundEngine.playNote(24+7+(octaveMultiplier19)+semitoneOffset19+secondChordRoot+key+(octaveTranspose3*mult), true);
                 this.changeFaderColor(octaveMultiplier19Selector.parentElement, true);
             }
             if (event.key === 'f') {
+                let mult = 0
+                if(include12) mult = 12;
                 //this.displayAndPlayChord('maj7');
-                soundEngine.playNote(24+11+(12*octaveMultiplier20)+semitoneOffset20+secondChordRoot+secondChordMinorOffset+key+(octaveTranspose3*12), true);
+                soundEngine.playNote(24+11+(octaveMultiplier20)+semitoneOffset20+secondChordRoot+secondChordMinorOffset+key+(octaveTranspose3*mult), true);
                 this.changeFaderColor(octaveMultiplier20Selector.parentElement, true);
             }
             if (event.key === 'g') {
+                let mult = 0
+                if(include13) mult = 12;
                 //this.displayAndPlayChord('maj7');
 
-                soundEngine.playNote(24+14+(12*octaveMultiplier21)+semitoneOffset21+secondChordRoot+key+(octaveTranspose3*12), true);
+                soundEngine.playNote(24+14+(octaveMultiplier21)+semitoneOffset21+secondChordRoot+key+(octaveTranspose3*mult), true);
                 //soundEngine.playNote(8+0+key+secondChordRoot);
                 this.changeFaderColor(octaveMultiplier21Selector.parentElement, true);
             }
             if (event.key === 'h') {
+                let mult = 0
+                if(include14) mult = 12;
                 //this.displayAndPlayChord('maj7');
-                soundEngine.playNote(24+16+(12*octaveMultiplier22)+semitoneOffset22+secondChordRoot+secondChordMinorOffset+key+(octaveTranspose3*12), true);
+                soundEngine.playNote(24+16+(octaveMultiplier22)+semitoneOffset22+secondChordRoot+secondChordMinorOffset+key+(octaveTranspose3*mult), true);
                 //soundEngine.playNote(8+4+key+secondChordRoot);
                 this.changeFaderColor(octaveMultiplier22Selector.parentElement, true);
             }
             if (event.key === 'j') {
+                let mult = 0
+                if(include15) mult = 12;
                 //this.displayAndPlayChord('maj7');
-                soundEngine.playNote(24+19+(12*octaveMultiplier23)+semitoneOffset23+secondChordRoot+key+(octaveTranspose3*12), true);
+                soundEngine.playNote(24+19+(octaveMultiplier23)+semitoneOffset23+secondChordRoot+key+(octaveTranspose3*mult), true);
                 //soundEngine.playNote(8+7+key+secondChordRoot);
                 this.changeFaderColor(octaveMultiplier23Selector.parentElement, true);
             }
             if (event.key === 'k') {
+                let mult = 0
+                if(include16) mult = 12;
                 //this.displayAndPlayChord('maj7');
-                soundEngine.playNote(24+11+(12*octaveMultiplier24)+semitoneOffset24+secondChordRoot+secondChordMinorOffset+key+12+(octaveTranspose3*12), true);
+                soundEngine.playNote(24+11+(octaveMultiplier24)+semitoneOffset24+secondChordRoot+secondChordMinorOffset+key+12+(octaveTranspose3*mult), true);
                 this.changeFaderColor(octaveMultiplier24Selector.parentElement, true);
             }
             
             if (event.key === 'z') {
+                let mult = 0
+                if(include17) mult = 12;
                 //this.displayAndPlayChord('maj7');
                 //sound.stop(noteIds[24+0+0]);
                 //sound.stop(noteIds[24+0+7]);
                 //sound.stop(noteIds[24+0+9]);
                 //soundEngine.playNote(16+thirdChordRoot+key);
-                soundEngine.playNote(24+0+(12*octaveMultiplier25)+thirdChordRoot+key+(rootOctaveOffset*12)+(octaveTranspose4*12), true);
+                soundEngine.playNote(24+0+(octaveMultiplier25)+thirdChordRoot+key+(rootOctaveOffset*12)+(octaveTranspose4*mult), true);
                 //soundEngine.playNote(24+12+0+thirdChordRoot+key);
                 this.changeFaderColor(octaveMultiplier25Selector.parentElement, true);
             }
             if (event.key === 'x') {
+                let mult = 0
+                if(include18) mult = 12;
                 //this.displayAndPlayChord('maj7');
-                soundEngine.playNote(24+4+(12*octaveMultiplier26)+thirdChordRoot+thirdChordMinorOffset+key+(octaveTranspose4*12), true);
+                soundEngine.playNote(24+4+(octaveMultiplier26)+thirdChordRoot+thirdChordMinorOffset+key+(octaveTranspose4*mult), true);
                 this.changeFaderColor(octaveMultiplier26Selector.parentElement, true);
             }
             if (event.key === 'c') {
+                let mult = 0
+                if(include19) mult = 12;
                 //this.displayAndPlayChord('maj7');
-                soundEngine.playNote(24+7+(12*octaveMultiplier27)+thirdChordRoot+key+(octaveTranspose4*12), true);
+                soundEngine.playNote(24+7+(octaveMultiplier27)+thirdChordRoot+key+(octaveTranspose4*mult), true);
                 this.changeFaderColor(octaveMultiplier27Selector.parentElement, true);
             }
             if (event.key === 'v') {
+                let mult = 0
+                if(include20) mult = 12;
                 //this.displayAndPlayChord('maj7');
-                soundEngine.playNote(24+11+(12*octaveMultiplier28)+thirdChordRoot+thirdChordMinorOffset+key+(octaveTranspose4*12), true);
+                soundEngine.playNote(24+11+(octaveMultiplier28)+thirdChordRoot+thirdChordMinorOffset+key+(octaveTranspose4*mult), true);
                 this.changeFaderColor(octaveMultiplier28Selector.parentElement, true);
             }
             if (event.key === 'b') {
+                let mult = 0
+                if(include21) mult = 12;
                 //this.displayAndPlayChord('maj7');
 
-                soundEngine.playNote(24+14+(12*octaveMultiplier29)+thirdChordRoot+key+(octaveTranspose4*12), true);
+                soundEngine.playNote(24+14+(octaveMultiplier29)+thirdChordRoot+key+(octaveTranspose4*mult), true);
                 //soundEngine.playNote(8+0+key+thirdChordRoot);
                 this.changeFaderColor(octaveMultiplier29Selector.parentElement, true);
             }
             if (event.key === 'n') {
+                let mult = 0
+                if(include22) mult = 12;
                 //this.displayAndPlayChord('maj7');
-                soundEngine.playNote(24+16+(12*octaveMultiplier30)+thirdChordRoot+thirdChordMinorOffset+key+(octaveTranspose4*12), true);
+                soundEngine.playNote(24+16+(octaveMultiplier30)+thirdChordRoot+thirdChordMinorOffset+key+(octaveTranspose4*mult), true);
                 //soundEngine.playNote(8+4+key+thirdChordRoot);
                 this.changeFaderColor(octaveMultiplier30Selector.parentElement, true);
             }
             if (event.key === 'm') {
+                let mult = 0
+                if(include23) mult = 12;
                 //this.displayAndPlayChord('maj7');
-                soundEngine.playNote(24+19+(12*octaveMultiplier31)+thirdChordRoot+key+(octaveTranspose4*12), true);
+                soundEngine.playNote(24+19+(octaveMultiplier31)+thirdChordRoot+key+(octaveTranspose4*mult), true);
                 //soundEngine.playNote(8+7+key+thirdChordRoot);
                 this.changeFaderColor(octaveMultiplier31Selector.parentElement, true);
             }
             if (event.key === ',') {
+                let mult = 0
+                if(include24) mult = 12;
                 //this.displayAndPlayChord('maj7');
-                soundEngine.playNote(24+11+(12*octaveMultiplier32)+thirdChordRoot+thirdChordMinorOffset+key+12+(octaveTranspose4*12), true);
+                soundEngine.playNote(24+11+(octaveMultiplier32)+thirdChordRoot+thirdChordMinorOffset+key+12+(octaveTranspose4*mult), true);
                 //soundEngine.playNote(8+11+key+thirdChordRoot);
                 this.changeFaderColor(octaveMultiplier32Selector.parentElement, true);
             }
@@ -1065,8 +1299,7 @@ const soundEngine = {
         if(markerIndex > -1 && keyUp && pressedNotes[noteNumber] === true) 
         {
             pressedNotes[noteNumber] = false;
-            console.log(noteIds[noteNumber]-1);
-            if(!sustainOn) sound.fade(1, 0, 100, noteIds[noteNumber]);
+            if(!sustainOn) sound.fade(1, 0, 750, noteIds[noteNumber]);
             markedKeys.splice(markerIndex,1);
             pianokeys.setMarkedKeys(markedKeys);
         }
@@ -1075,7 +1308,6 @@ const soundEngine = {
             pressedNotes[noteNumber] = true;
             var soundId = sound.play(noteNumber.toString());
             noteIds[noteNumber] = soundId;
-            console.log(soundId);
             markedKeys.push(noteNumber+1);
             pianokeys.setMarkedKeys(markedKeys);
             if(recording)
