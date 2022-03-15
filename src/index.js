@@ -9,8 +9,8 @@ const browserFs = require('browser-fs-access');
 const MidiWriter = require('midi-writer-js');
 
 var pianokeys = document.createElement("custom-piano-keys")
-pianokeys.setAttribute("oct-count", "6")
-pianokeys.setAttribute("height", "74.3")
+pianokeys.setAttribute("oct-count", "7")
+pianokeys.setAttribute("height", "75.2")
 pianokeys.setAttribute("stroke-w", "1")
 pianokeys.setAttribute("mark-color", "black")
 pianokeys.setAttribute("mark-diameter", "75")
@@ -54,7 +54,7 @@ browserFs.fileSave(blob, options);
 */
 
 const sound = new Howl({
-    src: ['assets/WurliSprite3.mp3'],
+    src: ['assets/GlassSprite.mp3'],
     onload() {
         console.log('Sound file has been loaded. Do something here!');
         soundEngine.init();
@@ -360,6 +360,13 @@ const app = {
             if(err) throw err;
         });
         */
+        rootOctaveOffset = parseInt(rootOctaveOffsetSelector.value);
+        firstChordRoot = this.getCorrectMinorAndMajorRoot(parseInt(secondChordSelector.value));
+        firstChordMinorOffset = this.changeToMinorOrMajor(firstChordRoot);
+        secondChordRoot = this.getCorrectMinorAndMajorRoot(parseInt(thirdChordSelector.value));
+        secondChordMinorOffset = this.changeToMinorOrMajor(secondChordRoot);
+        thirdChordRoot = this.getCorrectMinorAndMajorRoot(parseInt(fourthChordSelector.value));
+        thirdChordMinorOffset = this.changeToMinorOrMajor(thirdChordRoot);
         this.setupStartNotes();
         this.setupEventListeners();
         startTime = Date.now();

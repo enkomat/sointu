@@ -16,6 +16,23 @@ input[type=text] {
     width: 25px;
 }
 
+h3 {
+    padding: 10px;
+    margin: 0px;
+}
+
+#sointu-logo {
+    border: 1px solid rgb(0, 0, 0) !important;
+    position:absolute;
+    left:10px;
+    bottom:10px;
+    padding: 5px;
+    margin: 0px;
+    padding-bottom: 0px;
+    padding-top: 0px;
+    background: rgb(255, 255, 255);
+}
+
 #border-box {
     border: 1px solid rgb(211, 211, 211) !important;
     display:inline;
@@ -37,16 +54,16 @@ input[type=text] {
 #full-width-r {
     background: rgb(255, 255, 255);
     border: 1px solid #000 !important;
-    display:inline;
     float:right;
+    display: inline;
     padding: 20px;
     margin: 5px;
 }
 
 #container-r {
     display:inline;
-    max-width: 800px;
     float:right;
+    max-width: 800px;
 }
 
 #record-button {
@@ -54,6 +71,18 @@ input[type=text] {
 }
 
 #download-button {
+    font-size: 200px;
+}
+
+#second-type {
+    font-size: 200px;
+}
+
+#third-type {
+    font-size: 200px;
+}
+
+#fourth-type {
     font-size: 200px;
 }
 
