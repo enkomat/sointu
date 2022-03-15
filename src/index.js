@@ -366,51 +366,8 @@ const app = {
         secondChordRoot = this.getCorrectMinorAndMajorRoot(parseInt(thirdChordSelector.value));
         secondChordMinorOffset = this.changeToMinorOrMajor(secondChordRoot);
         thirdChordRoot = this.getCorrectMinorAndMajorRoot(parseInt(fourthChordSelector.value));
-        thirdChordMinorOffset = this.changeToMinorOrMajor(thirdChordRoot);
-        this.setupStartNotes();
         this.setupEventListeners();
         startTime = Date.now();
-    },
-    setupStartNotes() {
-        startNotes.forEach(noteName => {
-            let noteNameOption = this.createElement('option', noteName);
-            startNoteSelector.appendChild(noteNameOption);
-        });
-
-        startChords.forEach(chordName => {
-            let chordNameOption = this.createElement('option', chordName);
-            secondChordSelector.appendChild(chordNameOption);
-        });
-
-        startChords.forEach(chordName => {
-            let chordNameOption = this.createElement('option', chordName);
-            thirdChordSelector.appendChild(chordNameOption);
-        });
-
-        startChords.forEach(chordName => {
-            let chordNameOption = this.createElement('option', chordName);
-            fourthChordSelector.appendChild(chordNameOption);
-        });
-
-        startTypes.forEach(typeName => {
-            let typeNameOption = this.createElement('option', typeName);
-            firstTypeSelector.appendChild(typeNameOption);
-        });
-
-        startTypes.forEach(typeName => {
-            let typeNameOption = this.createElement('option', typeName);
-            secondTypeSelector.appendChild(typeNameOption);
-        });
-
-        startTypes.forEach(typeName => {
-            let typeNameOption = this.createElement('option', typeName);
-            thirdTypeSelector.appendChild(typeNameOption);
-        });
-
-        startTypes.forEach(typeName => {
-            let typeNameOption = this.createElement('option', typeName);
-            fourthTypeSelector.appendChild(typeNameOption);
-        });
     },
     setupEventListeners() {
         recordButtonSelector.addEventListener('click', () => {
