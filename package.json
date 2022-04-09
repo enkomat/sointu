@@ -4,11 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "npx parcel index.html",
+    "heroku-postbuild": "npx parcel index.html"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "parcel-bundler" : "^2.1.1",
     "@tonaljs/chord": "^3.3.0",
     "@tonaljs/chord-dictionary": "^3.3.0",
     "@tonaljs/tonal": "^3.2.2",
