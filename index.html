@@ -11,201 +11,197 @@
     <div id='div1'></div>
         <div>
             <div id="full-width">
-                <div id="border-box">
-                    Key
-                    <br>
-                    <input type='range' min='-24' max='24' value='0' id='start-note'></input>
-                </div>
-                <div id="border-box">
-                    Maj/Min<br><input type='range' min='-1' max='0' value='0' id='first-type'></input>
-                </div>
-                <div id="border-box">
-                    Root<br><input type='range' min='-4' max='0' value='-1' id='root-pitch'></input>
-                </div>
-                <br>
                 <div id="general-controls">
                     <div id="border-box"><input id="record-button" type='button' value='&#9679;'></input></div>
                     <div id="border-box"><input id="download-button" type='button' value='↓'></input></div>
-                    <label for="tempo">Tempo</label>
-                    <input type="text" id="tempo" name="tempo" value="120">
-                    Sustain
+                    &nbsp
+                    <label for="tempo">Tempo:</label>
+                    <input type="text" id="tempo" name="tempo" value="90">
+                    <label for="sustain">Sustain:</label>
                     <input type="checkbox" id="sustain" name="sustain" value="sustain" checked>
                 </div>
             </div>
-                <div id="full-width">
-                    <div>
-                        <div id="border-box">
-                            1
-                            <input type='range' min='-3' max='3' value='0' id='mult-1'></input>
-                        </div>
-                        <div id="border-box">
-                            2
-                            <input type='range' min='-3' max='3' value='0' id='mult-2'></input>
-                        </div>
-                        </div>
-                        <div id="border-box">
-                            3
-                            <input type='range' min='-3' max='3' value='0' id='mult-3'></input>
-                        </div>
-                        <div id="border-box">
-                            4
-                            <input type='range' min='-3' max='3' value='0' id='mult-4'></input>
-                        </div>
-                        <br>
-                        <div id="border-box">
-                            5
-                            <input type='range' min='-3' max='3' value='0' id='mult-5'></input>
-                        </div>
-                        <div id="border-box">
-                            6
-                            <input type='range' min='-3' max='3' value='0' id='mult-6'></input>
-                        </div>
-                        <div id="border-box">
-                            7
-                            <input type='range' min='-3' max='3' value='0' id='mult-7'></input>
-                        </div>
-                        <div id="border-box">
-                            8
-                            <input type='range' min='-3' max='3' value='0' id='mult-8'></input>
-                        </div>
-                    </div>
-                <div id="sointu-logo"><h3>sointu.fm</h3></div>
+            <div id="sointu-logo"><h3>sointu.fm</h3></div>
         </div>
         <div id="container-r">
         <div id="full-width-r">
             <div id="border-box">
+                1
+                <input type='range' min='-3' max='3' value='0' id='mult-1'></input>
+                <input type='range' min='-3' max='3' value='0' id='offset-1'></input>
+            </div>
+            <div id="border-box">
+                2
+                <input type='range' min='-3' max='3' value='0' id='mult-2'></input>
+                <input type='range' min='-3' max='3' value='0' id='offset-2'></input>
+            </div>
+            <div id="border-box">
+                3
+                <input type='range' min='-3' max='3' value='0' id='mult-3'></input>
+                <input type='range' min='-3' max='3' value='0' id='offset-3'></input>
+            </div>
+            <div id="border-box">
+                4
+                <input type='range' min='-3' max='3' value='0' id='mult-4'></input>
+                <input type='range' min='-3' max='3' value='0' id='offset-4'></input>
+            </div>
+            <div id="border-box">
+                5
+                <input type='range' min='-3' max='3' value='0' id='mult-5'></input>
+                <input type='range' min='-3' max='3' value='0' id='offset-5'></input>
+            </div>
+            <div id="border-box">
+                6
+                <input type='range' min='-3' max='3' value='0' id='mult-6'></input>
+                <input type='range' min='-3' max='3' value='0' id='offset-6'></input>
+            </div>
+            <div id="border-box">
+                7
+                <input type='range' min='-3' max='3' value='0' id='mult-7'></input>
+                <input type='range' min='-3' max='3' value='0' id='offset-7'></input>
+            </div>
+            <div id="border-box">
+                8
+                <input type='range' min='-3' max='3' value='0' id='mult-8'></input>
+                <input type='range' min='-3' max='3' value='0' id='offset-8'></input>
+            </div>
+            <div id="border-box">
+                Key&nbsp;&nbsp;
+                <input type='range' min='-24' max='12' value='0' id='start-note'></input>
+            </div>
+            <div id="border-box"><input type='button' value='⇄' id='first-type'></input></div>
+        </div>
+        <div id="full-width-r">
+            <div id="border-box">
                 Q
                 <input type='range' min='-3' max='3' value='0' id='mult-9'></input>
-                <input type="checkbox" id="inc-1">
+                <input type='range' min='-3' max='3' value='0' id='offset-9'></input>
             </div>
             <div id="border-box">
                 W
                 <input type='range' min='-3' max='3' value='0' id='mult-10'></input>
-                <input type="checkbox" id="inc-2" checked>
+                <input type='range' min='-3' max='3' value='0' id='offset-10'></input>
             </div>
             <div id="border-box">
                 E
                 <input type='range' min='-3' max='3' value='0' id='mult-11'></input>
-                <input type="checkbox" id="inc-3" checked>
+                <input type='range' min='-3' max='3' value='0' id='offset-11'></input>
             </div>
             <div id="border-box">
                 R
                 <input type='range' min='-3' max='3' value='0' id='mult-12'></input>
-                <input type="checkbox" id="inc-4" checked>
+                <input type='range' min='-3' max='3' value='0' id='offset-12'></input>
             </div>
             <div id="border-box">
                 T
                 <input type='range' min='-3' max='3' value='0' id='mult-13'></input>
-                <input type="checkbox" id="inc-5" checked>
+                <input type='range' min='-3' max='3' value='0' id='offset-13'></input>
             </div>
             <div id="border-box">
                 Y
                 <input type='range' min='-3' max='3' value='0' id='mult-14'></input>
-                <input type="checkbox" id="inc-6" checked>
+                <input type='range' min='-3' max='3' value='0' id='offset-14'></input>
             </div>
             <div id="border-box">
                 U
                 <input type='range' min='-3' max='3' value='0' id='mult-15'></input>
-                <input type="checkbox" id="inc-7" checked>
+                <input type='range' min='-3' max='3' value='0' id='offset-15'></input>
             </div>
             <div id="border-box">
                 I
                 <input type='range' min='-3' max='3' value='0' id='mult-16'></input>
-                <input type="checkbox" id="inc-8" checked>
+                <input type='range' min='-3' max='3' value='0' id='offset-16'></input>
             </div>
-            <div id="border-box">Root<input type='range' min='0' max='6' value='5' id='second-chord'></input></div>
-            <div id="border-box">Octave<input type='range' min='-2' max='2' value='0' id='oct-2'></input></div>
-            <div id="border-box"><input type='button' value='↺' id='second-type'></input></div>
+            <div id="border-box">Pitch<input type='range' min='0' max='6' value='5' id='second-chord'></input></div>
+            <div id="border-box"><input type='button' value='⇄' id='second-type'></input></div>
         </div>
         <div  id="full-width-r">
             <div id="border-box">
                 A
                 <input type='range' min='-3' max='3' value='0' id='mult-17'></input>
-                <input type="checkbox" id="inc-9">
+                <input type='range' min='-3' max='3' value='0' id='offset-17'></input>
             </div>
             <div id="border-box">
                 S
                 <input type='range' min='-3' max='3' value='0' id='mult-18'></input>
-                <input type="checkbox" id="inc-10" checked>
+                <input type='range' min='-3' max='3' value='0' id='offset-18'></input>
             </div>
             <div id="border-box">
                 D
                 <input type='range' min='-3' max='3' value='0' id='mult-19'></input>
-                <input type="checkbox" id="inc-11" checked>
+                <input type='range' min='-3' max='3' value='0' id='offset-19'></input>
             </div>
             <div id="border-box">
                 F
                 <input type='range' min='-3' max='3' value='0' id='mult-20'></input>
-                <input type="checkbox" id="inc-12" checked>
+                <input type='range' min='-3' max='3' value='0' id='offset-20'></input>
             </div>
             <div id="border-box">
                 G
                 <input type='range' min='-3' max='3' value='0' id='mult-21'></input>
-                <input type="checkbox" id="inc-13" checked>
+                <input type='range' min='-3' max='3' value='0' id='offset-21'></input>
             </div>
             <div id="border-box">
                 H
                 <input type='range' min='-3' max='3' value='0' id='mult-22'></input>
-                <input type="checkbox" id="inc-14" checked>
+                <input type='range' min='-3' max='3' value='0' id='offset-22'></input>
             </div>
             <div id="border-box">
                 J
                 <input type='range' min='-3' max='3' value='0' id='mult-23'></input>
-                <input type="checkbox" id="inc-15" checked>
+                <input type='range' min='-3' max='3' value='0' id='offset-23'></input>
             </div>
             <div id="border-box">
                 K
                 <input type='range' min='-3' max='3' value='0' id='mult-24'></input>
-                <input type="checkbox" id="inc-16" checked>
+                <input type='range' min='-3' max='3' value='0' id='offset-24'></input>
             </div>
-            <div id="border-box">Root<input type='range' min='0' max='6' value='2' id='third-chord'></input></div>
-            <div id="border-box">Octave<input type='range' min='-2' max='2' value='0' id='oct-3'></input></div>
-            <div id="border-box"><input type='button' value='↺' id='third-type'></input></div>
+            <div id="border-box">Pitch<input type='range' min='0' max='6' value='2' id='third-chord'></input></div>
+            <div id="border-box"><input type='button' value='⇄' id='third-type'></input></div>
         </div>
         <div id="full-width-r">
             <div id="border-box">
                 Z
                 <input type='range' min='-3' max='3' value='0' id='mult-25'></input>
-                <input type="checkbox" id="inc-17">
+                <input type='range' min='-3' max='3' value='0' id='offset-25'></input>
             </div>
             <div id="border-box">
                 X
                 <input type='range' min='-3' max='3' value='0' id='mult-26'></input>
-                <input type="checkbox" id="inc-18" checked>
+                <input type='range' min='-3' max='3' value='0' id='offset-26'></input>
             </div>
             <div id="border-box">
                 C
                 <input type='range' min='-3' max='3' value='0' id='mult-27'></input>
-                <input type="checkbox" id="inc-19" checked>
+                <input type='range' min='-3' max='3' value='0' id='offset-27'></input>
             </div>
             <div id="border-box">
                 V
                 <input type='range' min='-3' max='3' value='0' id='mult-28'></input>
-                <input type="checkbox" id="inc-20" checked>
+                <input type='range' min='-3' max='3' value='0' id='offset-28'></input>
             </div>
             <div id="border-box">
                 B
                 <input type='range' min='-3' max='3' value='0' id='mult-29'></input>
-                <input type="checkbox" id="inc-21" checked>
+                <input type='range' min='-3' max='3' value='0' id='offset-29'></input>
             </div>
             <div id="border-box">
                 N
                 <input type='range' min='-3' max='3' value='0' id='mult-30'></input>
-                <input type="checkbox" id="inc-22" checked>
+                <input type='range' min='-3' max='3' value='0' id='offset-30'></input>
             </div>
             <div id="border-box">
                 M
                 <input type='range' min='-3' max='3' value='0' id='mult-31'></input>
-                <input type="checkbox" id="inc-23" checked>
+                <input type='range' min='-3' max='3' value='0' id='offset-31'></input>
             </div>
             <div id="border-box">
                 ∞
                 <input type='range' min='-3' max='3' value='0' id='mult-32'></input>
-                <input type="checkbox" id="inc-24" checked>
+                <input type='range' min='-3' max='3' value='0' id='offset-32'></input>
             </div>
-            <div id="border-box">Root<input type='range' min='0' max='6' value='4' id='fourth-chord'></input></div>
-            <div id="border-box">Octave<input type='range' min='-2' max='2' value='0' id='oct-4'></input></div>
-            <div id="border-box"><input type='button' value='↺' id='fourth-type'></input></div>
+            <div id="border-box">Pitch<input type='range' min='0' max='6' value='4' id='fourth-chord'></input></div>
+            <div id="border-box"><input type='button' value='⇄' id='fourth-type'></input></div>
         </div>
         </div>
     <script type="module" src="index.js"></script>

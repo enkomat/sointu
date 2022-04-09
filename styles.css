@@ -7,9 +7,10 @@ body {
 input[type=range] {
     writing-mode: bt-lr; /* IE */
     -webkit-appearance: slider-vertical; /* Chromium */
-    height: 100px;
+    height: 70px;
     width: 10px;
     float:right;
+    padding: 3px;
 }
 
 input[type=text] {
@@ -23,14 +24,14 @@ h3 {
 
 #sointu-logo {
     border: 1px solid rgb(0, 0, 0) !important;
-    position:absolute;
-    left:10px;
-    bottom:10px;
-    padding: 5px;
-    margin: 0px;
-    padding-bottom: 0px;
-    padding-top: 0px;
+    float:left;
+    display:inline;
+    padding: 4.5px;
+    margin-top: 30.5px;
+    margin-left: -25px;
+    font-size: 10px;
     background: rgb(255, 255, 255);
+    transform: rotate(-90deg);
 }
 
 #border-box {
@@ -54,7 +55,7 @@ h3 {
 #full-width-r {
     background: rgb(255, 255, 255);
     border: 1px solid #000 !important;
-    float:right;
+    float: right;
     display: inline;
     padding: 20px;
     margin: 5px;
@@ -71,6 +72,10 @@ h3 {
 }
 
 #download-button {
+    font-size: 200px;
+}
+
+#first-type {
     font-size: 200px;
 }
 
